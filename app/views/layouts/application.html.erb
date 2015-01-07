@@ -7,8 +7,30 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= render "layouts/errors" %>
 <%= yield %>
+<% if signed_in? %>
+  <section class="sidebar">
+    <a href="#"> Playlists </a>
+    <a href="<%= user_url(current_user) %>"> Your Likes </a>
+    <a href="<%= edit_user_url(current_user) %>"> Change settings </a>
+
+  </section>
+
+  <nav class="navbar">
+    <ul class="userinfo">
+
+      <li> <%= current_user.username %></li>
+
+    </ul>
+
+    <form action="<%= session_url %>" method="post">
+      <%= auth_token %>
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Log Out!" class="logout">
+    </form>
+  </nav>
+<% end %>
 
 </body>
 </html>

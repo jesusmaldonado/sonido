@@ -1,4 +1,4 @@
-<% action_url = (action == :new ? users_url : users_url(@user)) %>
+<% action_url = (action == :new ? users_url : user_url(@user)) %>
 <% user_form_value = (action == :new ? "Sign Up" : "Edit User") %>
 
 <form action="<%= action_url %>" method="post">

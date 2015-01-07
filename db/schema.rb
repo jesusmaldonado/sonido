@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150107150922) do
+ActiveRecord::Schema.define(version: 20150107210151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albums", force: true do |t|
+    t.integer  "artist_id",  null: false
+    t.string   "type",       null: false
+    t.string   "title",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "username",        null: false
@@ -23,8 +31,10 @@ ActiveRecord::Schema.define(version: 20150107150922) do
     t.string   "email",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "account_type",    null: false
   end
 
+  add_index "users", ["account_type"], name: "index_users_on_account_type", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree

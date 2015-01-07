@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   validates :username, :session_token, :password_digest, :email, presence: true, uniqueness: true
   validates :password, length: { in: 6..20, allow_nil: true }
   validates :username, length: { in: 4..20 }
+  validates :email, format: { with: /@/, message: "Try rechecking your work, this doesn't look like a valid email" }
+  validates :account_type, inclusion: { in: %w(artist listener admin) }
+
   after_initialize :ensure_session_token
 
   attr_reader :password
