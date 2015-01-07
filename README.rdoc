@@ -1,4 +1,4 @@
-#**Sonido**#
+#Sonido#
 
 ##MVP##
 
