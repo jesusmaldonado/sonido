@@ -16,5 +16,14 @@
   <label for="email"> Email </label>
   <input type="text" name="user[email]" value="<%= user.email %>">
 
+  <% if action == :new %>
+  <br>
+  <label for="accounttype">Account Type (Can Only Choose Once!)</label>
+  <select id="accounttype" name="user[account_type]">
+    <option value="listener">Listener</option>
+    <option value="artist">Artist</option>
+  </select>
+  <br>
+  <% end %>
   <input type="submit" value="<%= user_form_value %>">
 </form>
