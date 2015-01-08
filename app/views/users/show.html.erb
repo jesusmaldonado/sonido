@@ -1,4 +1,5 @@
 <h1> Feed </h1>
 <% if current_user.account_type == "artist" %>
-  <%= button_to "Release a New Album, EP or Single", new_album_url, method: :get %>
+  <%= button_to "Release a New Album, EP or Single", new_recording_url, method: :get %>
+  <%= button_to "View Your Uploads", recordings_url, method: :get %>
 <% end %>

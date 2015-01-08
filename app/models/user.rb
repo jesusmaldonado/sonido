@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   validates :email, format: { with: /@/, message: "Try rechecking your work, this doesn't look like a valid email" }
   validates :account_type, inclusion: { in: %w(artist listener admin) }
 
+  has_many :recordings, class_name: :recording, foreign_key: :artist_id, primary_key: :id
+
   after_initialize :ensure_session_token
 
   attr_reader :password

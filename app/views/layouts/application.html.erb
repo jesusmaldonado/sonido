@@ -8,7 +8,7 @@
 </head>
 <body>
 <%= render "layouts/errors" %>
-<%= yield %>
+
 <% if signed_in? %>
   <section class="sidebar">
     <a href="#"> Playlists </a>
@@ -20,7 +20,7 @@
   <nav class="navbar">
     <ul class="userinfo">
 
-      <li> <%= current_user.username %></li>
+      <li> Welcome! <%= current_user.username %></li>
 
     </ul>
 
@@ -32,5 +32,6 @@
   </nav>
 <% end %>
 
+<%= yield %>
 </body>
 </html>
