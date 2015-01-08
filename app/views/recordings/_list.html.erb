@@ -1,0 +1,9 @@
+<% class_definer = recording.recording_type %>
+  <li>
+    <ul class="<%= class_definer %>">
+      <li class="<%= class_definer %>attribute"> Title: <%= recording.title %>  </li>
+      <li class="<%= class_definer %>attribute"> Made at: <%= recording.created_at %>  </li>
+      <li class="<%= class_definer  %>attribute"> Description: <%= recording.description %> </li>
+      <%= button_to "Edit " + recording.title, edit_recording_url(recording), method: :get %>
+    </ul>
+  </li>

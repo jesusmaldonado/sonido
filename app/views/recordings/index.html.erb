@@ -1,0 +1,20 @@
+<h1> Your recordings </h1>
+
+<%= button_to "Add a new recording", new_recording_url, method: :get %>
+
+<ul class="recordings">
+  <label for="eps"> EPs</label>
+  <ul id="eps" class="eps">
+   <%= render partial: "list", collection: current_user.eps, as: "recording"  %>
+  </ul>
+
+ <label for="albums"> Albums </label>
+ <ul id="albums" class="albums">
+   <%= render partial: "list", collection: current_user.albums, as: "recording" %>
+ </ul>
+
+ <label for="singles"> Singles </label>
+ <ul id="singles" class="singles">
+   <%= render partial: "list", collection: current_user.singles, as: "recording" %>
+ </ul>
+</ul>

@@ -1,0 +1,27 @@
+<% action_url = (action == :new ? recordings_url : recording_url(@recording)) %>
+
+<form action="<%= action_url %>" method="post">
+  <%= auth_token %>
+
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="patch">
+  <% end %>
+
+  <label for="title">Recording Title</label>
+  <input type="text" id="title" name="recording[title]" value="<%= @recording.title %>">
+  <br>
+
+  <% if action == :new %>
+  <label for="albumtype">Resource Type</label>
+  <select id="albumtype" name="recording[type]">
+      <option value="ep">EP</option>
+      <option value="album">Album</option>
+      <option value="single">Single</option>
+  </select>
+  <br>
+  <% end %>
+  <label for="description"> Description </label>
+  <input type="textarea" id="description" name="recording[description]" value="<%= @recording.description %>">
+  <br>
+  <input type="submit" value="Swubmit Resource">
+</form>
