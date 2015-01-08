@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates :email, format: { with: /@/, message: "Try rechecking your work, this doesn't look like a valid email" }
   validates :account_type, inclusion: { in: %w(artist listener admin) }
 
-  has_many :recordings, class_name: :recording, foreign_key: :artist_id, primary_key: :id
+  has_many :recordings, class_name: "Recording", foreign_key: :artist_id, primary_key: :id
 
   after_initialize :ensure_session_token
 
@@ -31,6 +31,17 @@ class User < ActiveRecord::Base
     self.session_token
   end
 
+  def eps
+    self.recordings.where(recording_type: "ep").order("created_at DESC")
+  end
+
+  def albums
+    self.recordings.where(recording_type: "album").order("created_at DESC")
+  end
+
+  def singles
+    self.recordings.where(recording_type: "single").order("created_at DESC")
+  end
 
   private
   def ensure_session_token
