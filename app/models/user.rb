@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :account_type, inclusion: { in: %w(artist listener admin) }
 
   has_many :recordings, class_name: "Recording", foreign_key: :artist_id, primary_key: :id
-
+  has_many :playlists
   after_initialize :ensure_session_token
 
   attr_reader :password
@@ -41,6 +41,14 @@ class User < ActiveRecord::Base
 
   def singles
     self.recordings.where(recording_type: "single").order("created_at DESC")
+  end
+
+  def public_playlists
+    self.playlists.where(status: "public").order("created_at DESC")
+  end
+
+  def private_playlists
+    self.playlists.where(status: "private").order("created_at DESC")
   end
 
   private

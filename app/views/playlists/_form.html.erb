@@ -1,0 +1,18 @@
+<% action_url = (action == :new ? playlists_url : playlist_url(@recording)) %>
+
+<form action="<%= action_url %>" method="post">
+<%= auth_token %>
+
+<% if action == :edit %>
+  <input type="hidden" name="_method" value="patch">
+<% end %>
+
+<input type="text" name="playlist[title]" value="<%= @playlist.title %>">
+<br>
+<select id="playliststaus" name="playlist[status]">
+    <option value="public">Public</option>
+    <option value="private">Private</option>
+</select>
+
+
+</form>

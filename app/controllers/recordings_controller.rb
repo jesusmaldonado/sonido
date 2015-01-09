@@ -36,7 +36,7 @@ class RecordingsController < ApplicationController
   def index
   end
 
-  
+
 
   private
   def recording_params
