@@ -2,7 +2,6 @@ class SessionsController < ApplicationController
   before_action :require_signed_in, except: [:new, :create]
 
   def new
-    @user = User.new()
   end
 
   def create

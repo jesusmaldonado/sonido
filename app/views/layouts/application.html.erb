@@ -11,9 +11,17 @@
 
 <% if signed_in? %>
   <section class="sidebar">
-    <a href="#"> Playlists </a>
-    <a href="<%= user_url(current_user) %>"> Your Likes </a>
-    <a href="<%= edit_user_url(current_user) %>"> Change settings </a>
+    <ul class="sidebarlinks">
+      <li class="sidebarlink">
+        <a href="#"> Playlists </a>
+      </li>
+      <li class="sidebarlink">
+        <a href="<%= user_url(current_user) %>"> Tracks </a>
+      </li>
+      <li class="sidebarlink">
+        <a href="<%= edit_user_url(current_user) %>"> Change settings </a></li>
+      </li>
+    </ul>
 
   </section>
 
