@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if @user
       log_in!(@user)
     else
-      flash.now[:errors] = @user.errors.full_messages
+      flash.now[:errors] = ["Sorry, incorrect username, password or email :["]
       render :new
     end
   end

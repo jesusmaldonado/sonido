@@ -1,0 +1,22 @@
+<% action_url = (action == :new ? songs_url : song_url(@song)) %>
+<% button_value = (action == :new ? "Make a New Song" : "Edit this Song") %>
+
+<form action=<%= action_url  %> method="post">
+  <% if action == :edit %>
+  <input type="hidden" name="_method" value="<%=   %>">
+  <input type="text" name="song[title]" value="<%= @song.title %>">
+  <br>
+  <textarea name="song[lyrics]" value="<%= @song.lyrics %>">
+  <br>
+  <select name="song[recording_id]">
+    <% current_user.recordings.each do |recording| %>
+      <option value=<%= recording.id
+        <%= selected=true if recording.id == @song.recording_id %>>
+        <%= recording.title %>
+      </option>
+    <% end %>
+  </select>
+  <br>
+  <input type="submit" value="<%=@song.title%>">
+
+</form>

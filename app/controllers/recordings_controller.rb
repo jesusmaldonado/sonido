@@ -36,9 +36,7 @@ class RecordingsController < ApplicationController
   def index
   end
 
-  def require_artist
-    redirect_to :back unless current_user.account_type == "artist"
-  end
+  
 
   private
   def recording_params

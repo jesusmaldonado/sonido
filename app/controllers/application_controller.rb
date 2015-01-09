@@ -29,4 +29,7 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_url unless signed_in?
   end
 
+  def require_artist
+    redirect_to :back unless current_user.account_type == "artist"
+  end
 end
