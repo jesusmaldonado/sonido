@@ -1,8 +1,8 @@
 class SongLikesController < ApplicationController
 
   def create
-    @song_like = SongLike.new(song_like_params)
-    @song_like.user_id = current_user.id
+    @song_like = current_user.song_likes.new(song_like_params)
+
     if @song_like.save
     else
       flash[:errors] = @song_like.errors.full_messages
@@ -21,7 +21,7 @@ class SongLikesController < ApplicationController
   end
 
   def song_like_params
-    params.require(:song_like).permit(:user_id, :song_id)
+    params.require(:song_like).permit(:song_id)
   end
 
 end
