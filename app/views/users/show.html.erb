@@ -17,7 +17,17 @@
         <li class="song">
           <% count += 1 %>
           <%= "Song" + count.to_s + " :" %><%= song.title %>
-          
+          <form id="" action="<%= playlist_songs_url %>" method="post">
+            <%= auth_token %>
+            <select name="playlist_song[playlist_id]">
+              <% current_user.playlists.each do |playlist| %>
+              <option value="<%= playlist.id %>">
+                <%= playlist.title %>
+              </option>
+              <% end %>
+            </select>
+            <input type="hidden" name="playlist_song[song_id]" value="<%= song.id %>">
+          </form>
         </li>
       <% end %>
       </ul>

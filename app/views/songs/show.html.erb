@@ -4,3 +4,15 @@
     <%= @song.lyrics %>
   </li>
 </ul>
+<form id="" action="<%= playlist_songs_url %>" method="post">
+  <%= auth_token %>
+  <select name="playlist_song[playlist_id]">
+    <% current_user.playlists.each do |playlist| %>
+    <option value="<%= playlist.id %>">
+      <%= playlist.title %>
+    </option>
+    <% end %>
+  </select>
+  <input type="hidden" name="playlist_song[song_id]" value="<%= @song.id %>">
+  <input type="submit" value="Add this song to a playlist">
+</form>

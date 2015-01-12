@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :recordings
   resources :songs
   resources :playlists
+  resources :playlist_songs
   resource :session, only: [:create, :destroy, :new]
   root to: "users#new"
 end

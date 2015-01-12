@@ -1,9 +1,1 @@
-<h1> Add a Song to a Playlist ^___^ </h1>
-<ul class="playlists">
-<% current_user.playlists.each do |playlist| %>
-  <li>
-    playlist.title
-    <%= button_to "Add song to playlist!", playlistsongs_url,  method: :post  %>
-  </li>
-<% end %>
-</ul>
+
