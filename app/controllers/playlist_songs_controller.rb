@@ -12,10 +12,8 @@ class PlaylistSongsController < ApplicationController
 
   def destroy
     @playlist_song = PlaylistSong.find(params[:id])
-    if @playlist_song.save
-    else
-      flash[:errors] = @playlist_song.errors.full_messages
-    end
+    @playlist_song.destroy
+    flash[:errors] = [@playlist_song.song.title.to_s + "was deleted"]
     redirect_to :back
   end
 

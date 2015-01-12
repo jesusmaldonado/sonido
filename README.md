@@ -7,6 +7,10 @@ Add playerfollow
 
 
 ##TODO##
+Guest-Sign-Up
+Check out Auth in Backbone
+
+
 Activation email for users
 
 Refactor the album show???

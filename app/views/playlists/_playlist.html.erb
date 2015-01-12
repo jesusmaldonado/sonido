@@ -1,4 +1,17 @@
-<label for="playlist"> <%= playlist.title %></label>
+<br>
+<label for="playlist"> Title: <%= playlist.title %></label>
 <ul class="playlist" id="playlist">
-  <li> Status: <%= playlist.status %> </li>
+  <label for="status">Status </label>
+  <li id="status"><%= playlist.status %></li>
+  <label for="songs">Songs</label>
+  <li id="songs">
+    <ul class="songs">
+      <% playlist.songs.each do |song| %>
+        <% @playlist_song = PlaylistSong.find_by(playlist_id: playlist.id, song_id: song.id) %>
+      <li>
+        <%= song.title  %>
+        <%= button_to "Delete" + song.title, playlist_song_url(@playlist_song), method: :delete %>
+      </li>
+      <% end %>
+    </ul>
 </ul>
