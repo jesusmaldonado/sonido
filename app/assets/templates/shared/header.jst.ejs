@@ -1,0 +1,16 @@
+<h1 class="title"> Sonido </h1>
+<nav class="navbar">
+
+
+
+  <% if (Sonido.currentUser.isSignedIn()){ %>
+    <ul class="userinfo">
+
+      <li> Welcome! <%= Sonido.currentUser.escape('username') %></li>
+
+    </ul>
+  <% } else { %>
+    <a href="#/users/new"> Sign Up</a>
+    <a href="#/session/new"> Sign In </a>
+  <% } %>
+</nav>
