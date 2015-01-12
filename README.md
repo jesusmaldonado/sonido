@@ -7,8 +7,10 @@ Add playerfollow
 
 
 ##TODO##
-Guest-Sign-Up
-Check out Auth in Backbone
+
+Functionality:
+##Guest-Sign-Up##
+##Check out Auth in Backbone##
 
 
 Activation email for users
@@ -23,4 +25,8 @@ Shuffle Playlists
 
 Deal with:
 
-duration
+Duration...
+
+
+##Backbone
+Top navbar all sexy~~~

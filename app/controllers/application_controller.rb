@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   def log_in!(user)
     session[:token] = user.reset_session_token!
     @current_user = user
-    redirect_to user_url(user)
   end
 
   def current_user

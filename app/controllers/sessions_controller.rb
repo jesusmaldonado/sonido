@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
     if @user
       log_in!(@user)
+      redirect_to root_url
     else
       flash.now[:errors] = ["Sorry, incorrect username, password or email :["]
       render :new
@@ -18,6 +19,6 @@ class SessionsController < ApplicationController
     @user = User.find_by(session_token: session[:token])
     log_out!(@user)
   end
-
+  
 
 end
