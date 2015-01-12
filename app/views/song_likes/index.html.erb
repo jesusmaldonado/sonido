@@ -1,0 +1,7 @@
+<h1> Your Likes! </h1>
+<label for id="liked-songs">
+  Liked Songs
+</label>
+<ul id="liked-songs" class="likes">
+  <%= render partial: "like", collection: current_user.liked_songs, as: "song" %>
+</ul>

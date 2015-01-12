@@ -1,4 +1,5 @@
 class PlaylistSongsController < ApplicationController
+  before_action :require_original_creator, only: [:destroy]
 
   def create
     @playlist_song = PlaylistSong.new(playlistsong_params)
@@ -19,5 +20,10 @@ class PlaylistSongsController < ApplicationController
 
   def playlistsong_params
     params.require(:playlist_song).permit(:playlist_id, :song_id)
+  end
+
+  private
+  def require_original_creator
+    # redirect_to :back unless @playlist_song.playlist_creator.id == current_user.id
   end
 end
