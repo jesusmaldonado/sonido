@@ -10,7 +10,21 @@
         <% @playlist_song = PlaylistSong.find_by(playlist_id: playlist.id, song_id: song.id) %>
       <li>
         <%= song.title  %>
-        <%= button_to "Delete" + song.title, playlist_song_url(@playlist_song), method: :delete %>
+        <% if !song.liked?(current_user) %>
+          <form id="form_id" action="<%= song_likes_url %>" method="post">
+            <%= auth_token %>
+            <input type="hidden" name="song_like[song_id]" value="<%= song.id %>">
+            <input type="submit" value="Like this song">
+          </form>
+          <% else %>
+            <% @song_like = SongLike.find_by(user_id: current_user.id, song_id: song.id) %>
+            <form id="form_id" action="<%= song_like_url(@song_like) %>" method="post">
+              <%= auth_token %>
+              <input type="hidden" name="_method" value="delete">
+              <input type="submit" value="Unlike this song">
+            </form>
+        <% end %>
+        <%= button_to "Remove from playlist: " + song.title, playlist_song_url(@playlist_song), method: :delete %>
       </li>
       <% end %>
     </ul>

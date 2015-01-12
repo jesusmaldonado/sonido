@@ -1,7 +1,9 @@
 <h1> Your Playlists </h1>
 
 
-<a href="<%= new_playlist_url %>"> Add a New Playlist </a>
+<a href="<%= new_playlist_url %>">
+  Add a New Playlist
+</a>
 <br>
 <label for="publicplaylist"> Public Playlists </label>
 <section id="publicplaylist" class="public_playlist">
@@ -9,7 +11,7 @@
 
 </section>
 <br>
-<label for="privateplauylist"> Private Playlists </label>
+<label for="privateplaylist"> Private Playlists </label>
 <section id="privateplaylist" class="private_playlist">
   <%= render partial: "playlist", collection: current_user.private_playlists, as: "playlist" %>
 </section>

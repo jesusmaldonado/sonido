@@ -5,6 +5,16 @@ class Song < ActiveRecord::Base
   belongs_to :recording
   has_one :artist, through: :recording, source: :artist
 
+  def song_like(user)
+    SongLike.find_by(user_id: user.id, song_id: self.id)
+  end
 
+  def liked?(user)
+    if SongLike.find_by(user_id: user.id, song_id: self.id)
+      return true
+    else
+      return false
+    end
+  end
 
 end
