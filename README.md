@@ -1,16 +1,21 @@
 #Sonido#
 
 ##MVP##
+Add playlistsong
+Add playerfollow
+
 
 
 ##TODO##
 Activation email for users
 
-Refactor the album show
+Refactor the album show???
 
-NONMVP Features:
+Restful PlayCount
 
-Restful PlayCount, SongComment
+SongComment
+
+Shuffle Playlists
 
 Deal with:
 
