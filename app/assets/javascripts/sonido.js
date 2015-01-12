@@ -4,6 +4,10 @@ window.Sonido = {
   Views: {},
   Routers: {},
   initialize: function() {
+
+    Sonido.currentUser = new Sonido.Models.CurrentUser();
+    Sonido.currentUser.fetch();
+
     var $content = $(".content");
     var router = new Sonido.Routers.Router({
       $content = $content

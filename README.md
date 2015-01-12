@@ -4,14 +4,20 @@
 Add playlistsong
 Add playerfollow
 
+##Doing
 
+##Backbone
+##Check out Auth in Backbone##
+Top navbar all sexy~~~
+All views
+
+PaperClip
 
 ##TODO##
 
 Functionality:
-##Guest-Sign-Up##
-##Check out Auth in Backbone##
 
+Guest-Sign-Up
 
 Activation email for users
 
@@ -26,7 +32,3 @@ Shuffle Playlists
 Deal with:
 
 Duration...
-
-
-##Backbone
-Top navbar all sexy~~~
