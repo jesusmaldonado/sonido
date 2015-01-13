@@ -6,7 +6,6 @@ Add playerfollow
 
 ##Doing
 
-##Backbone
 ##Check out Auth in Backbone##
 Top navbar all sexy~~~
 All views

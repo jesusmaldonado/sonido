@@ -10,14 +10,21 @@ Sonido.Routers.Router = Backbone.Router.extend({
     "session/new" : "signIn"
   },
   newUser: function(){
-    
-  },
-  _requireSignedIn: function(){
-    if (!Sonido.currentUser.isSignedIn()){
 
-    }
   },
-  goHome : function(){
+  home: function(){
+
+  },
+  _requireSignedIn: function(signinView){
+    if (!Sonido.currentUser.isSignedIn()){
+      signinView = signinView || this._goHome.bind(this);
+      signinView();
+      return false;
+    }
+
+    return true;
+  },
+  _goHome : function(){
     Backbone.history.navigate("", {trigger: true});
   },
 
