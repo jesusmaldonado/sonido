@@ -1,0 +1,19 @@
+<ul class="song">
+
+
+
+    <li> Title:  <%= song.escape("title") %> </li>
+
+
+    <li> Created At: <%= song.escape("created_at") %> </li>
+
+
+    <li> Username:  <%= song.user().escape("username") %> </li>
+
+
+    <li> Record Title: <%= song.recording().escape("title") %> </li>
+
+    <button class="destroy" data-id="<%= song.escape('id') %>">
+      Destroy this song!
+    </button>
+</ul>

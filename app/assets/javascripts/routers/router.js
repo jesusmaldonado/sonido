@@ -5,7 +5,7 @@ Sonido.Routers.Router = Backbone.Router.extend({
   },
   routes: {
     "" : "home",
-    "/songs/:id" : "showSong"
+    "songs/:id" : "showSong"
   },
   home: function(){
     var recentSongs = new Sonido.Collections.RecentSongs();

@@ -1,4 +1,5 @@
 Sonido.Models.Song = Backbone.Model.extend({
+  urlRoot: "api/songs",
   parse: function(resp){
     if (resp.artist){
       this.user().set(resp.artist, {parse: true});

@@ -8,7 +8,7 @@ Sonido.Collections.Songs = Backbone.Collection.extend({
       model = new Sonido.Models.Song({id: id});
       model.fetch({
         success: function(model){
-          _currentCollection.add(model);
+          _currentCollection.add(model, {merge: true});
         }
       });
     } else {
