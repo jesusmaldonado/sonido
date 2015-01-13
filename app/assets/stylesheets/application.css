@@ -21,3 +21,12 @@ ul {
 label {
   font-weight: bold;
 }
+
+.content {
+  width: 1000px;
+  margin: auto;
+}
+
+.popularFeed {
+  background: #eee;
+}

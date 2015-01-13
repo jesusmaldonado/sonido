@@ -23,6 +23,10 @@ class SongsController < ApplicationController
 
   end
 
+  def index
+
+  end
+
   def destroy
   end
 

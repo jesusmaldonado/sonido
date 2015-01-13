@@ -1,0 +1,28 @@
+<% songs.each(function(song){ %>
+  <ul class="popular-song-section">
+    <li class="song-title">
+      <a href="#/songs/" + song.escape('id')>
+        <%= song.escape('title') %>
+      </a>
+    </li>
+
+    <li class="song-attribute">
+      <a href="#/recordings/"+ song.recording().escape('id')>
+        <%= song.recording().escape('title')%>
+      </a>
+    </li>
+
+    <li class="song-attribute">
+      <a href="#/users/" + song.user().escape('id')>
+        <%= song.user().escape('username') %>
+      </a>
+    </li>
+
+    <li class="song-attribute">
+      <a href="#/songs/" + song.escape('id')>
+        See Lyrics!!
+        <%= song.escape('lyrics') %>
+      </a>
+    </li>
+  </ul>
+  <%  }); %>

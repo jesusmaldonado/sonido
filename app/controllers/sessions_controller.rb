@@ -19,6 +19,6 @@ class SessionsController < ApplicationController
     @user = User.find_by(session_token: session[:token])
     log_out!(@user)
   end
-  
+
 
 end

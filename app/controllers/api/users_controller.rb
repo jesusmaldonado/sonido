@@ -5,8 +5,7 @@ module Api
         user = User.new(user_params)
 
         if user.save
-          log_in!(user)
-          redirect_to root_url
+          render json: user
         else
           render json: user.errors.full_messages, status: :unprocessable_entity
         end

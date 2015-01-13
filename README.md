@@ -1,3 +1,22 @@
+TO DO FOR TODAY
+
+home view
+add songs from home view upon signing in
+
+-make the router action
+-instantiate a view
+-need collection of songs?????
+-need model of song?
+
+-to send down the object
+
+write a parse method on the
+
+
+
+
+
+
 #Sonido#
 
 ##MVP##

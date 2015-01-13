@@ -1,3 +1,3 @@
-Backbone.CompositeView = Backbone.View.extend({
+Sonido.CompositeView = Backbone.View.extend({
 
 })
