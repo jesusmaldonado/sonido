@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       resources :recordings
       resources :songs do
         collection do
-          get :popular
+          get :recent
         end
       end
 
