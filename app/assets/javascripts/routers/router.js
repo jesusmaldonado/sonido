@@ -4,12 +4,16 @@ Sonido.Routers.Router = Backbone.Router.extend({
   },
   routes: {
     "" : "home",
+    "/songs/:id" : "showSong"
   },
   home: function(){
     var newestSongs = new Sonido.Collections.Songs();
     newestSongs.fetch();
     var homeView = new Sonido.Views.Home({collection: newestSongs});
     this._swapView(homeView);
+  },
+  showSong: function(id) {
+    var song =
   },
   _swapView: function(view){
     this._currentView && this._currentView.remove()
