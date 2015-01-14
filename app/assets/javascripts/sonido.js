@@ -8,7 +8,7 @@ window.Sonido = {
 
     var songs = new Sonido.Collections.Songs()
     songs.fetch();
-    
+
     var router = new Sonido.Routers.Router({
       $content: $content,
       songs: songs

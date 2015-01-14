@@ -13,7 +13,11 @@
 
     <li> Record Title: <%= song.recording().escape("title") %> </li>
 
-    <button class="destroy" data-id="<%= song.escape('id') %>">
+    <button class="destroySong button" data-id="<%= song.escape('id') %>">
       Destroy this song!
+    </button>
+
+    <button class="songLikeStatus button" data-liked="<%= song.escape('liked') %>" %>">
+      Like this song!
     </button>
 </ul>
