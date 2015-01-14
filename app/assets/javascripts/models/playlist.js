@@ -1,5 +1,5 @@
-Sonido.Models.Recording = Backbone.Model.extend({
-  urlRoot: "api/recordings",
+Sonido.Models.Playlist = Backbone.Model.extend({
+  urlRoot: "api/playlists",
   parse: function(resp){
     if (resp.songs){
       this.songs().set(resp.artist, {parse: true})

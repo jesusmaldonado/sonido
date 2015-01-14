@@ -2,7 +2,7 @@ module Api
   class UsersController < ApiController
 
       def index
-        user = current_user
+        @users = User.all
       end
 
 
@@ -17,13 +17,13 @@ module Api
       end
 
       def show
-        @user = User.find(params[:id])
+        @user = User.includes(:recordings, :playlists).find(params[:id])
       end
 
 
       private
       def user_params
-        params.require(:user).permit(:username, :email, :password, :session_token, :account_type)
+        params.require(:user).permit(:username, :email, :password, :session_token, :account_type, :id)
       end
   end
 end
