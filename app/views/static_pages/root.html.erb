@@ -1,13 +1,15 @@
-<header class="header"></header>
-<main class="content">
-</div>
+<div class="header-container"></div>
+<main class="content"></main>
+
 
 <script>
   $(document).ready(function(){
+      <% if signed_in? %>
+        Sonido.currentUser = new Sonido.Models.User({id: <%= current_user.id %>})
+        Sonido.currentUser.fetch()
+      <% end %>
+
     Sonido.initialize();
-    <% if signed_in? %>
-      Sonido.currentUser = new Sonido.Models.User({id: <%= current_user.id %>})
-      Sonido.currentUser.fetch()
-    <% end %>
+
   });
 </script>

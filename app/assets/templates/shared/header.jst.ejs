@@ -1,15 +1,14 @@
-  <section class="sidebar">
     <ul class="sidebarlinks">
       <li class="sidebarlink">
-        <a href="#/users/<%=  %>" > Playlists </a>
+        <a href="#/users/<%= currentUser.get("id") %>/playlists" > Playlists </a>
       </li>
       <li class="sidebarlink">
-        <a href="#/user/"> Tracks </a>
+        <a href="#/users/<%= currentUser.get("id") %>/tracks"> Tracks </a>
       </li>
       <li class="sidebarlink">
-        <a href="<%= edit_user_url(current_user) %>"> Change settings </a>
+        <a href="#/users/<%= currentUser.get("id") %>/settings"> Change settings </a>
       </li>
       <li class="sidebarlink">
-        <a href="<%= song_likes_url %>"> See your likes </a>
+        <a href="#/users/<%= currentUser.get("id") %>/likes"> See your likes </a>
       </li>
     </ul>

@@ -6,7 +6,6 @@ Sonido.Views.Home = Backbone.View.extend({
   className: "popularFeed",
   render: function(){
     var homeContents = this.template({ songs: this.collection });
-
     this.$el.html(homeContents);
     return this;
   }

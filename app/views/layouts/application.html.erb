@@ -11,24 +11,6 @@
 <%= render "layouts/errors" %>
 
 <% if signed_in? %>
-  <section class="sidebar">
-    <ul class="sidebarlinks">
-      <li class="sidebarlink">
-        <a href="<%= playlists_url %>"> Playlists </a>
-      </li>
-      <li class="sidebarlink">
-        <a href="<%= user_url(current_user) %>"> Tracks </a>
-      </li>
-      <li class="sidebarlink">
-        <a href="<%= edit_user_url(current_user) %>"> Change settings </a>
-      </li>
-      <li class="sidebarlink">
-        <a href="<%= song_likes_url %>"> See your likes </a>
-      </li>
-    </ul>
-
-  </section>
-
   <nav class="navbar">
     <ul class="userinfo">
 

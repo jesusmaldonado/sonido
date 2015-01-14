@@ -12,7 +12,8 @@ window.Sonido = {
     var router = new Sonido.Routers.Router({
       $content: $content,
       songs: songs,
-      currentUser: Sonido.currentUser
+      currentUser: Sonido.currentUser,
+      headerContainer: $(".header-container")
     });
     Backbone.history.start()
   }
