@@ -14,11 +14,16 @@
  *= require_self
  */
 
+a, div, ul, label, section, li {
+  color: inherit;
+}
+
+
 body {
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
+  color: #333;
 }
-
 
 
 ul {
@@ -29,9 +34,27 @@ label {
   font-weight: bold;
 }
 
+.group::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 .content {
   width: 1000px;
   margin: auto;
   background: #eee;
 }
- 
+
+.header-container {
+  width: 1000px;
+  margin: auto;
+}
+
+.sidebarlinks {
+  float: left;
+}
+
+.userinfo {
+  float: right;
+}

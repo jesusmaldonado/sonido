@@ -1,3 +1,4 @@
+  <div class="navlinks">
     <ul class="sidebarlinks">
       <li class="sidebarlink">
         <a href="#/users/<%= currentUser.get("id") %>/playlists" > Playlists </a>
@@ -6,9 +7,16 @@
         <a href="#/users/<%= currentUser.get("id") %>/tracks"> Tracks </a>
       </li>
       <li class="sidebarlink">
-        <a href="#/users/<%= currentUser.get("id") %>/settings"> Change settings </a>
-      </li>
-      <li class="sidebarlink">
         <a href="#/users/<%= currentUser.get("id") %>/likes"> See your likes </a>
       </li>
     </ul>
+  </div>
+
+
+    <div class="userlinks">
+      <ul class="userinfo">
+        <li class="userslink">
+          <a href="#/users/<%= currentUser.get("id") %>/settings"> Change your settings </a>
+        </li>
+      </ul>
+    </div>
