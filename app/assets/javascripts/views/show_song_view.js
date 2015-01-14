@@ -10,43 +10,53 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
   render: function(){
     var showContents = this.template({song: this.model})
     this.$el.html(showContents);
+    this.renderButton();
     return this;
   },
-  destroySong: function(){
-    this.model.destroy();
-    Backbone.history.navigate("", {trigger: true});
-  },
-  handleLike: function(event){
+  renderButton: function(){
     var likeButton = this.$el.find(".songLikeStatus")
-    var likedStatus = likeButton.data("liked")
 
-    var song_id = $(event.currentTarget).data("id");
 
-    if (likedStatus === "true") {
-      createLike(song_id);
+    var songLike = this.model.songLike()
+    var likedStatus = this.model.songLike().get("id")
+    if (!likedStatus) {
+      likeButton.html("Like this song!")
     } else {
-      destroyLike(song_id);
+      likeButton.html("Unlike this song!");
     }
   },
   createLike: function(song_id){
     var newLike = new Sonido.Models.SongLike({song_id: song_id})
     var _currentShowView = this;
+    var currentSong = this;
     newLike.save({}, {
-      success: function(){
-        _currentShowView.changeButton()
+      success: function(model){
+        currentSong._songLike = model;
+        _currentShowView.render();
       }
     })
   },
-  destroyLike: function(song_id){
+  // destroySong: function(){
+  //   this.model.destroy();
+  //   Backbone.history.navigate("", {trigger: true});
+  // },
+  handleLike: function(event){
+    var song_id = $(event.currentTarget).data("id");
 
+  //   var likeButton = this.$el.find(".songLikeStatus")
+  //   var likedStatus = likeButton.data("liked")
+  //
+  //
+  //   if (likedStatus === "true") {
+  //     createLike(song_id);
+  //   } else {
+  //     likeButton.data("songLikeId")
+  //     destroyLike(song_id);
+  //   }
   },
-  changeButton: function(){
-    var likeButton = this.$el.find(".songLikeStatus")
-    var status = likeButton.data("liked")
-    if (status === "true") {
-      //do stuff for destroy
-    } else {
-      
-    }
-  }
+
+  // destroyLike: function(song_id){
+  //
+  //},
+
 })

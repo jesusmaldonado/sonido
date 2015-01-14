@@ -11,9 +11,9 @@ class Song < ActiveRecord::Base
 
   def liked?(user)
     if SongLike.find_by(user_id: user.id, song_id: self.id)
-      return true
+      return "liked"
     else
-      return false
+      return "notliked"
     end
   end
 
