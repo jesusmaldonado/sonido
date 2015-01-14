@@ -5,5 +5,9 @@
 <script>
   $(document).ready(function(){
     Sonido.initialize();
+    <% if signed_in? %>
+      Sonido.currentUser = new Sonido.Models.User({id: <%= current_user.id %>})
+      Sonido.currentUser.fetch()
+    <% end %>
   });
 </script>

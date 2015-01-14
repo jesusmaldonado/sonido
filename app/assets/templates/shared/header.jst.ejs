@@ -1,16 +1,15 @@
-<h1 class="title"> Sonido </h1>
-<nav class="navbar">
-
-
-
-  <% if (Sonido.currentUser.isSignedIn()){ %>
-    <ul class="userinfo">
-
-      <li> Welcome! <%= Sonido.currentUser.escape('username') %></li>
-
+  <section class="sidebar">
+    <ul class="sidebarlinks">
+      <li class="sidebarlink">
+        <a href="#/users/<%=  %>" > Playlists </a>
+      </li>
+      <li class="sidebarlink">
+        <a href="#/user/"> Tracks </a>
+      </li>
+      <li class="sidebarlink">
+        <a href="<%= edit_user_url(current_user) %>"> Change settings </a>
+      </li>
+      <li class="sidebarlink">
+        <a href="<%= song_likes_url %>"> See your likes </a>
+      </li>
     </ul>
-  <% } else { %>
-    <a href="#/users/new"> Sign Up</a>
-    <a href="#/session/new"> Sign In </a>
-  <% } %>
-</nav>

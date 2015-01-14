@@ -1,7 +1,5 @@
 TO DO FOR TODAY
 
-home view
-add songs from home view upon signing in
 
 -make the router action
 -instantiate a view
@@ -22,6 +20,7 @@ write a parse method on the
 ##MVP##
 Add playlistsong
 Add playerfollow
+Refactor
 
 ##Doing
 

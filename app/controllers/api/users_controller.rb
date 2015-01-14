@@ -1,6 +1,11 @@
 module Api
   class UsersController < ApiController
 
+      def index
+        user = current_user
+      end
+
+
       def create
         user = User.new(user_params)
 
@@ -11,7 +16,11 @@ module Api
         end
       end
 
+      def show
+        @user = User.find(params[:id])
+      end
 
+      
       private
       def user_params
         params.require(:user).permit(:username, :email, :password, :session_token, :account_type)

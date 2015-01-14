@@ -2,6 +2,8 @@ Sonido.Routers.Router = Backbone.Router.extend({
   initialize: function(options) {
     this.$content = options.$content
     this.songs = options.songs
+    this.currentUser = options.currentUser
+    this.header()
   },
   routes: {
     "" : "home",
@@ -17,6 +19,11 @@ Sonido.Routers.Router = Backbone.Router.extend({
     var specificSong = this.songs.getOrFetch(id);
     var showSongView = new Sonido.Views.ShowSongView({model: specificSong});
     this._swapView(showSongView);
+  },
+  header: function() {
+    var headerView = new Sonido.Views.Header({model: this.currentUser})
+    $header = $(".header");
+    $header.html(headerView.render().$el);
   },
   _swapView: function(view){
     this._currentView && this._currentView.remove()
