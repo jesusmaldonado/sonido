@@ -90,3 +90,8 @@ button:hover {
 .fade {
   transition: color .25s ease-in-out;
 }
+
+
+.containerForAdd {
+  float: right;
+}

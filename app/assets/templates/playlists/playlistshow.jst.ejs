@@ -1,8 +1,9 @@
+<div class="containerForAdd group">
 <button class="addPlaylist">
-  <a href="#/playlists/new">
     Add a new playlist
-  </a>
 </button>
+</div>
+
 <% playlists.each(function(playlist){ %>
   <label>
     <a href="#/playlists/<%= playlist.escape('id') %>">
