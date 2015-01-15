@@ -1,6 +1,9 @@
 Sonido.Collections.Recordings = Backbone.Collection.extend({
   url: "api/recordings",
   model: Sonido.Models.Recording,
+  initialize: function(model, options){
+    this.song = options.song
+  },
   getOrFetch: function(id){
     var model = this.get(id);
     var _currentCollection = this;

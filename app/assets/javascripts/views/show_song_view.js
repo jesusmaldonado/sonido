@@ -20,7 +20,6 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
 
     var songLike = this.model.songLike()
     var likedStatus = this.model.songLike().get("id");
-    console.log(likedStatus)
     if (!likedStatus) {
       likeButton.html("Like this song!");
       likeButton.toggleClass("unliked");
