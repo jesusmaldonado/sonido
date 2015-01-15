@@ -3,7 +3,7 @@ module Api
 
     def create
       song_like = current_user.song_likes.new(song_params)
-      
+
       if song_like.save
         render json: song_like
       else

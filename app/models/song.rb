@@ -4,7 +4,8 @@ class Song < ActiveRecord::Base
 
   belongs_to :recording
   has_one :artist, through: :recording, source: :artist
-
+  has_many :playlist_songs
+  has_many :playlists, through: :playlist_songs, source: :playlist
   def song_like(user)
     SongLike.find_by(user_id: user.id, song_id: self.id)
   end

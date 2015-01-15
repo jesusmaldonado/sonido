@@ -1,0 +1,33 @@
+<% likes.each(function(song){ %>
+    <label>
+      <a href="#/songs/<%= song.escape('id') %>">
+        <%= song.escape('title') %>
+      </a>
+      <ul class="song">
+        <li>
+          <a href="#/users/<%= song.user().escape('id') %>">
+            <%= song.user().escape('username') %>
+          </a>
+        </li>
+        <li>
+          <a href="#/recordings/<%= song.recording().escape('id') %>">
+            <%= song.recording().escape('title') %>
+          </a>
+        </li>
+        <li>
+          Lyrics: <%= song.escape('lyrics') %>
+        </li>
+
+        <% if (song.escape('liked') === "notliked") { %>
+          <button class="likeSong button" data-song-id="<%= song.id %>">
+            &hearts;
+          </button>
+        <% } else { %>
+          <button class="unlikeSong button" data-song-id="<%= song.id %>">
+            &hearts;
+          </button>
+        <% } %>
+
+    </ul>
+    </label>
+<% }) %>

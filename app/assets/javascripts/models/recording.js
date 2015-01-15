@@ -1,7 +1,7 @@
 Sonido.Models.Recording = Backbone.Model.extend({
   urlRoot: "api/recordings",
   parse: function(resp){
-    if (resp.songs){
+    if (resp.songs) {
       this.songs().set(resp.songs, {parse: true})
       delete resp.songs
     }

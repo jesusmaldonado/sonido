@@ -10,7 +10,8 @@ Sonido.Routers.Router = Backbone.Router.extend({
   routes: {
     "" : "home",
     "songs/:id" : "showSong",
-    "users/:id/playlists": "userPlaylists"
+    "users/:id/playlists": "userPlaylists",
+    "users/:id/likes" : "userLikes"
   },
   home: function(){
     var recentSongs = new Sonido.Collections.RecentSongs();
@@ -31,6 +32,11 @@ Sonido.Routers.Router = Backbone.Router.extend({
     var playlists = this.users.getOrFetch(id).playlists()
     var playlistsView = new Sonido.Views.PlaylistView({ collection: playlists })
     this._swapView(playlistsView);
+  },
+  userLikes : function(id){
+    var likes = this.users.getOrFetch(id).likes()
+    var likesView = new Sonido.Views.LikesView({collection: likes})
+    this._swapView(likesView);
   },
   _swapView: function(view){
     this._currentView && this._currentView.remove()

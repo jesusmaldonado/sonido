@@ -80,11 +80,11 @@ button:hover {
   float: right;
 }
 .likeSong {
-  color: #f00;
+  color: #000;
 }
 
 .unlikeSong {
-  color: #000;
+  color: #f00;
 }
 
 .fade {

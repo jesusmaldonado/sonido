@@ -1,9 +1,7 @@
 Sonido.Views.PlaylistView = Backbone.View.extend({
   template: JST["playlists/playlistshow"],
   initialize: function(){
-    this.listenTo(this.collection, "formSubmit", "removeSubviews" )
     this.listenTo(this.collection, 'sync change add remove changeSong', this.render)
-    this.subviews = []
   },
   events: {
     "click .removeSong" : "removeSong",
@@ -67,7 +65,6 @@ Sonido.Views.PlaylistView = Backbone.View.extend({
     var data = {song_like: {song_id: songId}};
     var playlistId = $(event.currentTarget).data("playlist-id");
     var playlistView = this;
-
     var playlists = this.collection
     var playlist = playlists.get({id: playlistId});
     var song = playlist.songs().get({id: songId});
@@ -94,7 +91,6 @@ Sonido.Views.PlaylistView = Backbone.View.extend({
       collection: currentPlaylists,
       model: newPlaylist
     })
-    this.subviews.push(newPlaylistView);
     $(".containerForAdd").html(newPlaylistView.render().$el)
   }
 })

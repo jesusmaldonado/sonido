@@ -24,5 +24,21 @@
         <%= song.escape('lyrics') %>
       </a>
     </li>
+
+    <% if (song.escape('liked') === "notliked") { %>
+      <button class="likeSong button" data-song-id="<%= song.id %>">
+        &hearts;
+      </button>
+    <% } else { %>
+      <button class="unlikeSong button" data-song-id="<%= song.id %>">
+        &hearts;
+      </button>
+    <% } %>
+
+    <button class="addToPlaylist" data-song-id="<%= song.id %>">
+      +
+    </button>
+
+
   </ul>
   <%  }); %>
