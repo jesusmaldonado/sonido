@@ -3,9 +3,11 @@
       <li class="sidebarlink">
         <a href="#/users/<%= currentUser.get("id") %>/playlists" > Playlists </a>
       </li>
+      <% if (currentUser.escape('account_type') === "artist") {%>
       <li class="sidebarlink">
         <a href="#/users/<%= currentUser.get("id") %>/tracks"> Tracks </a>
       </li>
+      <% }  %>
       <li class="sidebarlink">
         <a href="#/users/<%= currentUser.get("id") %>/likes"> See your likes </a>
       </li>
