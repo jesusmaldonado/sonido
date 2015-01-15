@@ -74,7 +74,7 @@ button, input {
 }
 
 button:hover {
-  border: 4px solid #black;
+  border: 4px solid #6a6968;
 }
 .addPlaylist {
   float: right;
