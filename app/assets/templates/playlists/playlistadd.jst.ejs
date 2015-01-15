@@ -1,0 +1,18 @@
+<% playlists.each(function(playlist){ %>
+
+  <% if (playlist.songs().get(song.id)) { %>
+    <% var addOrDestroy = " -" %>
+    <% var hasSong = "inPlaylist" %>
+  <% } else { %>
+    <% var addOrDestroy = " +" %>
+    <% var hasSong = "notInPlaylist" %>
+  <% } %>
+
+
+  <button class="selectedPlaylist" data-playlist-id='<%= playlist.escape('id') %>' data-playlist-contains="<%= hasSong %>" >
+    <%= playlist.escape('title') + addOrDestroy %>
+  </button>
+<%  }) %>
+<a class="close">
+  X
+</a>

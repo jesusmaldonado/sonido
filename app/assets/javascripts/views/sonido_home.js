@@ -1,6 +1,6 @@
 Sonido.Views.Home = Backbone.View.extend({
   initialize: function(){
-    this.listenTo(this.collection, 'sync change', this.render)
+    this.listenTo(this.collection, 'sync change', this.render);
   },
   events: {
     "click .likeSong" : "likeSong",
@@ -58,8 +58,14 @@ Sonido.Views.Home = Backbone.View.extend({
   },
   addToPlaylist: function(event){
     event.preventDefault();
-
     var songId = $(event.currentTarget).data("song-id");
+    var song = this.collection.get(songId);
 
+    var playlistAddView = new Sonido.Views.PlaylistAdd({
+      song: song,
+      collection: Sonido.currentUser.playlists(),
+      recentSongs: this.collection,
+      $el: $(".containerAddPlaylist") })
+    playlistAddView.render();
   }
 })
