@@ -4,6 +4,7 @@ Sonido.Routers.Router = Backbone.Router.extend({
     this.songs = options.songs;
     this.currentUser = options.currentUser;
     this.users = options.users;
+    this.recordings = options.recordings;
     this.headerContainer = options.headerContainer;
     this.headerFunc();
     this.sidebarContainer = options.sidebarContainer;
@@ -13,7 +14,9 @@ Sonido.Routers.Router = Backbone.Router.extend({
     "" : "home",
     "songs/:id" : "showSong",
     "users/:id/playlists": "userPlaylists",
-    "users/:id/likes" : "userLikes"
+    "users/:id/likes" : "userLikes",
+    "newRecording" : "newRecording",
+    "recording/:id": "recordingShow"
   },
   home: function(){
     var recentSongs = new Sonido.Collections.RecentSongs();
@@ -44,6 +47,23 @@ Sonido.Routers.Router = Backbone.Router.extend({
     var sidebarView = new Sonido.Views.Sidebar({model: this.currentUser});
     this.sidebarContainer.html(sidebarView.render().$el);
     this.headerContainer.append(this.sidebarContainer)
+  },
+  newRecording: function(){
+
+    var newRecording = new Sonido.Models.Recording()
+
+    var newRecordingView = new Sonido.Views.RecordingForm({
+      model: newRecording,
+      collection: this.currentUser.recordings()
+    })
+
+    this._swapView(newRecordingView)
+  },
+  recordingShow: function(id){
+    var recording = this.recordings.getOrFetch(id);
+    var recordingShowView = new Sonido.Views.RecordingShowView({
+      
+    })
   },
   _swapView: function(view){
     this._currentView && this._currentView.remove()

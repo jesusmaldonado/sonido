@@ -14,7 +14,7 @@
  *= require_self
  */
 
-a, div, ul, label, section, li, button, input {
+a, div, ul, label, section, li, button, input, textarea {
   outline: 0;
   color: inherit;
   text-align: inherit;
@@ -36,7 +36,7 @@ ul {
 label {
 }
 
-button {
+button, input {
   -webkit-appearance: none;
 }
 
@@ -66,15 +66,20 @@ button {
   float: right;
 }
 
-button, input {
+button, input, textarea {
   color: #6a6968;
   cursor: pointer;
   background: #fff;
   border: 1px solid #e3e3e3;
 }
 
+.profile-picture > img {
+  width: 50px;
+  height: 50px;
+}
+
 button:hover {
-  border: 4px solid #6a6968;
+  border: 2px solid #6a6968;
 }
 .addPlaylist {
   float: right;
@@ -91,7 +96,29 @@ button:hover {
   transition: color .25s ease-in-out;
 }
 
+.new {
+  border: 2px solid #333;
+  margin: 0 auto;
+  width: 500px;
+  padding: 40px
+}
+
+.new textarea {
+  height: 100px;
+}
+
+.new textarea, input, select, label {
+  margin: 4px;
+  display: block;
+}
 
 .containerForAdd {
   float: right;
+}
+
+.new > img {
+  margin: 4px;
+  margin-left: 10px;
+  width: 100px;
+  height: 100px;
 }

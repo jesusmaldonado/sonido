@@ -12,5 +12,16 @@ Sonido.Models.Recording = Backbone.Model.extend({
       this._songs = new Sonido.Collections.Songs([], {recording: this})
     }
     return this._songs
+  },
+  toJSON: function(){
+  // We want proper namespacing of our attributes in Rails.
+    var json = {recording: _.clone(this.attributes)};
+
+    if (this._image) {
+      json.recording.image = this._image;
+    }
+
+    return json;
   }
+
 })

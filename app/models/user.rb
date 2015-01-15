@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   validates :email, format: { with: /@/, message: "Try rechecking your work, this doesn't look like a valid email" }
   validates :account_type, inclusion: { in: %w(artist listener admin) }
 
+  has_attached_file :avatar, default_url: "empty_user.jpg"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
 
   has_many :song_likes
   has_many :liked_songs, through: :song_likes, source: :song

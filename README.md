@@ -1,38 +1,14 @@
-TO DO FOR TODAY
-
-
--make the router action
--instantiate a view
--need collection of songs?????
--need model of song?
-
--to send down the object
-
-write a parse method on the
-
-
-
-
-
-
 #Sonido#
 
 ##MVP##
-Add playlistsong
-Add playerfollow
-Refactor
-
-##Doing
-
-##Check out Auth in Backbone##
-Top navbar all sexy~~~
-All views
-
-PaperClip
+-create song
+-add song to record
 
 ##TODO##
 
 Functionality:
+
+Progress Tracker
 
 Guest-Sign-Up
 

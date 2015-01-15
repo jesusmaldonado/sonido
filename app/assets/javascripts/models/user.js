@@ -15,9 +15,7 @@ Sonido.Models.User = Backbone.Model.extend({
       this.likes().set(resp.likes, {parse: true})
       delete resp.likes
     }
-
     return resp;
-
   },
   playlists: function(){
     if (!this._playlists) {
@@ -36,5 +34,18 @@ Sonido.Models.User = Backbone.Model.extend({
       this._likes = new Sonido.Collections.Songs([], {user: this})
     }
     return this._likes
+  },
+
+  toJSON: function(){
+  // We want proper namespacing of our attributes in Rails.
+    var json = {user: _.clone(this.attributes)};
+
+    if (this._avatar) {
+      json.user.avatar = this._avatar;
+    }
+
+    return json;
   }
+
+
 })

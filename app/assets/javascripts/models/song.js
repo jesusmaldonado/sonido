@@ -45,5 +45,16 @@ Sonido.Models.Song = Backbone.Model.extend({
       this._songLike = new Sonido.Models.SongLike();
     }
     return this._songLike
+  },
+  toJSON: function(){
+  // We want proper namespacing of our attributes in Rails.
+    var json = {song: _.clone(this.attributes)};
+
+    if (this._audio) {
+      json.song.audio = this._audio;
+    }
+
+    return json;
   }
+
 });
