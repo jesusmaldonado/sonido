@@ -5,7 +5,7 @@ Sonido.Models.Playlist = Backbone.Model.extend({
       this.songs().set(resp.songs, {parse: true})
       delete resp.songs
     }
-    return resp
+    return resp;
   },
   songs: function(){
     if (!this._songs) {

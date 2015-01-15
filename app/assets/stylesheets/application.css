@@ -14,8 +14,10 @@
  *= require_self
  */
 
-a, div, ul, label, section, li {
+a, div, ul, label, section, li, button {
   color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
 }
 
 
@@ -31,7 +33,10 @@ ul {
 }
 
 label {
-  font-weight: bold;
+}
+
+button {
+  -webkit-appearance: none;
 }
 
 .group::after {
@@ -57,4 +62,23 @@ label {
 
 .userinfo {
   float: right;
+}
+
+button, input {
+  color: #6a6968;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #e3e3e3
+}
+
+button:hover {
+  border: 4px solid #black;
+}
+
+.likeSong {
+  color: #f00;
+}
+
+.unlikeSong {
+  color: #000;
 }

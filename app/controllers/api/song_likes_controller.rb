@@ -3,7 +3,7 @@ module Api
 
     def create
       song_like = current_user.song_likes.new(song_params)
-
+      
       if song_like.save
         render json: song_like
       else
@@ -13,6 +13,12 @@ module Api
 
     def destroy
       SongLike.find(params[:id]).destroy
+      render json: {}
+    end
+
+    def removeSongLike
+      song_like = SongLike.find_by(user_id: current_user.id, song_id: params[:song_id])
+      song_like.destroy
       render json: {}
     end
 

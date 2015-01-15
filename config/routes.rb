@@ -25,8 +25,16 @@ Rails.application.routes.draw do
       end
 
 
-      resources :song_likes
+      resources :song_likes do
+        collection do
+          delete :removeSongLike
+        end
+      end
       resources :playlists
-      resources :playlist_songs
+      resources :playlist_songs do
+        collection do
+          delete :removePlaylistSong
+        end
+      end
   end
 end
