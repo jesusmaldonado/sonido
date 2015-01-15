@@ -17,7 +17,8 @@ window.Sonido = {
       songs: songs,
       users: users,
       currentUser: Sonido.currentUser,
-      headerContainer: $(".header-container")
+      headerContainer: $(".header-container"),
+      sidebarContainer: $(".sidebar")
     });
     Backbone.history.start()
   }

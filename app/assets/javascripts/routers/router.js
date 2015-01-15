@@ -6,6 +6,8 @@ Sonido.Routers.Router = Backbone.Router.extend({
     this.users = options.users;
     this.headerContainer = options.headerContainer;
     this.headerFunc();
+    this.sidebarContainer = options.sidebarContainer;
+    this.sidebarFunc()
   },
   routes: {
     "" : "home",
@@ -24,10 +26,6 @@ Sonido.Routers.Router = Backbone.Router.extend({
     var showSongView = new Sonido.Views.ShowSongView({model: specificSong});
     this._swapView(showSongView);
   },
-  headerFunc: function() {
-    var headerView = new Sonido.Views.Header({model: this.currentUser})
-    this.headerContainer.html(headerView.render().$el)
-  },
   userPlaylists: function(id){
     var playlists = this.users.getOrFetch(id).playlists()
     var playlistsView = new Sonido.Views.PlaylistView({ collection: playlists })
@@ -37,6 +35,15 @@ Sonido.Routers.Router = Backbone.Router.extend({
     var likes = this.users.getOrFetch(id).likes()
     var likesView = new Sonido.Views.LikesView({collection: likes})
     this._swapView(likesView);
+  },
+  headerFunc: function() {
+    var headerView = new Sonido.Views.Header({model: this.currentUser})
+    this.headerContainer.html(headerView.render().$el)
+  },
+  sidebarFunc: function(){
+    var sidebarView = new Sonido.Views.Sidebar({model: this.currentUser});
+    this.sidebarContainer.html(sidebarView.render().$el);
+    this.headerContainer.append(this.sidebarContainer)
   },
   _swapView: function(view){
     this._currentView && this._currentView.remove()

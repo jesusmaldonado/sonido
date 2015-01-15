@@ -1,0 +1,26 @@
+<nav class="navbar">
+    <ul class="userinfo">
+
+      <li> Welcome! <%= currentUser.escape('username') %></li>
+
+      <% if (currentUser.escape('account_type') === "artist") { %>
+        <li>
+          <button class="logout">
+            Log Out
+          </button>
+        </li>
+        <li>
+          <button class="#/newRecording">
+            Release a New Album, EP or Single
+          </button>
+        </li>
+        <li>
+          <button href="#/uploads">
+            View Your Uploads
+          </button>
+        </li>
+      <% } %>
+    </ul>
+
+
+</nav>

@@ -1,6 +1,9 @@
   <div class="navlinks">
     <ul class="sidebarlinks">
       <li class="sidebarlink">
+        <a href="" > Home </a>
+      </li>
+      <li class="sidebarlink">
         <a href="#/users/<%= currentUser.get("id") %>/playlists" > Playlists </a>
       </li>
       <% if (currentUser.escape('account_type') === "artist") {%>
@@ -9,7 +12,7 @@
       </li>
       <% }  %>
       <li class="sidebarlink">
-        <a href="#/users/<%= currentUser.get("id") %>/likes"> See your likes </a>
+        <a href="#/users/<%= currentUser.get("id") %>/likes"> Likes </a>
       </li>
     </ul>
   </div>
