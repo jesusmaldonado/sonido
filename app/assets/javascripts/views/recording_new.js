@@ -19,6 +19,7 @@ Sonido.Views.RecordingForm = Backbone.View.extend({
     this.model.save(formData, {
       success: function(model){
         currentView.collection.add(model)
+        Backbone.history.navigate("recording/"+model.id, {trigger: true})
         delete model._image;
       }
     })

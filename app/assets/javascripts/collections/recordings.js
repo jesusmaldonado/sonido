@@ -5,7 +5,7 @@ Sonido.Collections.Recordings = Backbone.Collection.extend({
     var model = this.get(id);
     var _currentCollection = this;
     if (!model) {
-      model = new Sonido.Models.Playlist({id: id});
+      model = new Sonido.Models.Recording({id: id});
       model.fetch({
         success: function(model){
           _currentCollection.add(model, {merge: true});

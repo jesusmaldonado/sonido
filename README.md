@@ -1,9 +1,7 @@
   #Sonido#
 
 ##MVP##
--create song
--add song to record
--play
+-play songs but how?????
 -user pref
 -add logo
 
@@ -11,18 +9,14 @@
 
 Functionality:
 
-Progress Tracker for Uploads
+Progress Tracker for Uploads....how does this work?
 
 Guest-Sign-Up
 
 Activation email for users
 
-Refactor the album show???
-
-Restful PlayCount
-SongComment
-
-
-Shuffle Playlists
 Deal with:
+PlayCount
+Comments @ specific song time
+Shuffle Playlists
 Duration...

@@ -10,7 +10,14 @@ module Api
       end
     end
 
-    
+    def index
+      @recordings = Recording.all
+    end
+
+    def show
+      @recording = Recording.find(params[:id])
+    end
+
     private
     def recording_params
       params.require(:recording).permit(:artist_id, :recording_type, :title, :description, :image)

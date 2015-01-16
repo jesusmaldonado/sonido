@@ -66,9 +66,11 @@ Sonido.Routers.Router = Backbone.Router.extend({
   },
   recordingShow: function(id){
     var recording = this.recordings.getOrFetch(id);
-    var recordingShowView = new Sonido.Views.RecordingShowView({
+
+    var recordingShowView = new Sonido.Views.RecordingShow({
       model: recording
     })
+    this._swapView(recordingShowView)
   },
   _swapView: function(view){
     this._currentView && this._currentView.remove()

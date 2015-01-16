@@ -1,0 +1,27 @@
+<ul>
+  <label>
+    <li>
+      <%= recording.escape('title') %>
+    </li>
+    <div class="imgContainer">
+    </div>
+      <div class="containerForAdd">
+      </div>
+  </label>
+  <button class="addSong">
+    +
+  </button>
+  <br>
+  <% count = 1 %>
+  <% recording.songs().each(function(song){ %>
+    <label>   <%= count %>
+        <li>
+          <a href="songs/<%= song.id %>">
+            <%= song.escape('title') %>
+          </a>
+        </li>
+    </label>
+    <% count += 1 %>
+  <%  }) %>
+
+</ul>

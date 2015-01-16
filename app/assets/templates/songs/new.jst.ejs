@@ -1,0 +1,21 @@
+    <button class="close">
+      X
+    </button>
+    <label> Title:
+      <input type="text" name="song[title]">
+    </label>
+
+    <label> Lyrics:
+      <textarea name="song[lyrics]">
+      </textarea>
+    </label>
+
+    <label>
+      Song
+      <input type="file" name="song[audio_song]" id="input-post-song">
+    </label>
+
+    <input type="hidden" name="song[recording_id]" value="<%= recording.id %>">
+
+    <br>
+    <input type="submit" class="submit" value="Add new song">
