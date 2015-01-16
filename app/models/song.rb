@@ -1,7 +1,7 @@
 class Song < ActiveRecord::Base
   validates :title, :recording_id, :lyrics, presence: true
   # validates :duration, format: { with: /[0-5][0-9] minutes [0-9][0-9] seconds/, message: "Only songs up to an hour long can be uploaded" }
-  has_attached_file :audio_song
+  has_attached_file :audio_song, default_url: "breaking.mp3"
   validates_attachment_content_type :audio_song, :content_type => /\Aaudio\/.*\Z/
 
 

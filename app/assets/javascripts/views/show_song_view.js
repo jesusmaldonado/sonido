@@ -5,9 +5,10 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
   },
   template: JST["songs/show"],
   events: {
-    "click .destroySong" : "destroySong",
+    // "click .destroySong" : "destroySong",
     "click .unliked" : "createLike",
-    "click .liked" : "destroyLike"
+    "click .liked" : "destroyLike",
+    "click .playSong" : "draw"
   },
   render: function(){
     var showContents = this.template({song: this.model})
@@ -43,6 +44,27 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
         _currentShowView.render();
       }
     })
+  },
+  draw: function(){
+    var audioCtx = new AudioContext();
+    var audio = document.getElementById('Audio');
+    var audioSrc = audioCtx.createMediaElementSource(audio);
+    var analyser = audioCtx.createAnalyser();
+     
+    audioSrc.connect(analyser);
+    var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+
+    var renderFrame = function (){
+      requestAnimationFrame(renderFrame);
+
+      analyser.getByteFrequencyData(frequencyData);
+    }
+
+    console.log(frequencyData)
+
+    audio.start();
+    renderFrame();
+
   },
   destroyLike: function() {
     var likeButton = this.$el.find(".songLikeStatus")

@@ -29,6 +29,8 @@ Sonido.Views.RecordingForm = Backbone.View.extend({
     var file = event.currentTarget.files[0]
     var reader = new FileReader();
 
+
+
     reader.onloadend = function (){
       thisView._updatePreview(reader.result);
       thisView.model._image = reader.result;
@@ -41,6 +43,7 @@ Sonido.Views.RecordingForm = Backbone.View.extend({
       delete this.model._image
 
     }
+
 
   },
   _updatePreview: function(src){

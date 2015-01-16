@@ -3,7 +3,8 @@
     <li>
       <%= recording.escape('title') %>
     </li>
-    <div class="imgContainer">
+    <div class="recordingImage">
+      <img src="<%= recording.escape('image_url') %>"></img>
     </div>
       <div class="containerForAdd">
       </div>
@@ -16,7 +17,7 @@
   <% recording.songs().each(function(song){ %>
     <label>   <%= count %>
         <li>
-          <a href="songs/<%= song.id %>">
+          <a href="#songs/<%= song.id %>">
             <%= song.escape('title') %>
           </a>
         </li>

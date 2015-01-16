@@ -25,6 +25,8 @@ module Sonido
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
       }
     }
+
+    config.assets.paths << "app/assets/audios"
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de

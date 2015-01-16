@@ -13,6 +13,14 @@
 
     <li> Record Title: <%= song.recording().escape("title") %> </li>
 
+    <button class="playSong">
+      >
+    </button>
+    <div class="renderer">
+    </div>
+    <audio src="<%= song.escape('audio_url') %>" id="Audio">
+    </audio>
+
     <button class="destroySong button" data-id="<%= song.escape('id') %>">
       Destroy this song!
     </button>

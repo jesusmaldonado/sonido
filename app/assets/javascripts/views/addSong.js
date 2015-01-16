@@ -19,9 +19,11 @@ Sonido.Views.NewSong = Backbone.View.extend({
   },
   submit: function(event){
     event.preventDefault()
+
     formData = this.$el.serializeJSON().song;
     var currentView = this;
-    var recording = this.recording
+
+    var recording = this.recording;
     var recordingSongs = this.recording.songs()
     this.newSong.save(formData, {
       success: function(model){
@@ -36,8 +38,16 @@ Sonido.Views.NewSong = Backbone.View.extend({
     var file = event.currentTarget.files[0]
     var reader = new FileReader();
 
-    reader.onloadstart = function(event){
-      thisView._updateProgress(event)
+
+
+    reader.onloadend = function (){
+      thisView.newSong._audio_song = reader.result;
+    }
+
+    if (file) {
+      reader.readAsDataURL(file);
+    } else {
+      delete this.newSong._audio_song;
     }
 
   },

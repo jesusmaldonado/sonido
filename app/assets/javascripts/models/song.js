@@ -50,8 +50,8 @@ Sonido.Models.Song = Backbone.Model.extend({
   // We want proper namespacing of our attributes in Rails.
     var json = {song: _.clone(this.attributes)};
 
-    if (this._audio) {
-      json.song.audio = this._audio;
+    if (this._audio_song) {
+      json.song.audio_song = this._audio_song;
     }
 
     return json;
