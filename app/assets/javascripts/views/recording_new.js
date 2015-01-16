@@ -20,7 +20,6 @@ Sonido.Views.RecordingForm = Backbone.View.extend({
       success: function(model){
         currentView.collection.add(model)
         delete model._image;
-        Backbone.history.navigate("recording/:id", {trigger: true})
       }
     })
   },
@@ -32,7 +31,6 @@ Sonido.Views.RecordingForm = Backbone.View.extend({
     reader.onloadend = function (){
       thisView._updatePreview(reader.result);
       thisView.model._image = reader.result;
-      console.log(thisView.model)
     }
 
     if (file) {
@@ -41,7 +39,6 @@ Sonido.Views.RecordingForm = Backbone.View.extend({
       thisView._updatePreview("")
       delete this.model._image
 
-      console.log(thisView.model)
     }
 
   },

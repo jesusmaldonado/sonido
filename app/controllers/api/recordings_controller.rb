@@ -9,8 +9,8 @@ module Api
         render json: recording.errors.full_messages, status: :unprocessable_entity
       end
     end
-    
 
+    
     private
     def recording_params
       params.require(:recording).permit(:artist_id, :recording_type, :title, :description, :image)

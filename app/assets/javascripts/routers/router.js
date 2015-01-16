@@ -16,7 +16,8 @@ Sonido.Routers.Router = Backbone.Router.extend({
     "users/:id/playlists": "userPlaylists",
     "users/:id/likes" : "userLikes",
     "newRecording" : "newRecording",
-    "recording/:id": "recordingShow"
+    "recording/:id": "recordingShow",
+    "uploads" : "userUploads"
   },
   home: function(){
     var recentSongs = new Sonido.Collections.RecentSongs();
@@ -43,6 +44,10 @@ Sonido.Routers.Router = Backbone.Router.extend({
     var headerView = new Sonido.Views.Header({model: this.currentUser})
     this.headerContainer.html(headerView.render().$el)
   },
+  userUploads: function(){
+    var uploadView = new Sonido.Views.UploadView({model: this.currentUser})
+    this._swapView(uploadView);
+  },
   sidebarFunc: function(){
     var sidebarView = new Sonido.Views.Sidebar({model: this.currentUser});
     this.sidebarContainer.html(sidebarView.render().$el);
@@ -62,7 +67,7 @@ Sonido.Routers.Router = Backbone.Router.extend({
   recordingShow: function(id){
     var recording = this.recordings.getOrFetch(id);
     var recordingShowView = new Sonido.Views.RecordingShowView({
-      
+      model: recording
     })
   },
   _swapView: function(view){
