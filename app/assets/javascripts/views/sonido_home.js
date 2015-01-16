@@ -60,12 +60,13 @@ Sonido.Views.Home = Backbone.View.extend({
     event.preventDefault();
     var songId = $(event.currentTarget).data("song-id");
     var song = this.collection.get(songId);
+    var $el = this.$el.find(".containerAddPlaylist" + songId);
 
     var playlistAddView = new Sonido.Views.PlaylistAdd({
       song: song,
       collection: Sonido.currentUser.playlists(),
       recentSongs: this.collection,
-      $el: $(".containerAddPlaylist") })
+      $el: $el })
     playlistAddView.render();
   }
 })

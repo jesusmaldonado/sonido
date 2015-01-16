@@ -1,7 +1,10 @@
   #Sonido#
 
 ##MVP##
--play songs but how?????
+MVP done
+  Users can login, sign up, create playlists, like songs, and view songs.
+  
+
 -user pref
 -add logo
 

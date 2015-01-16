@@ -7,7 +7,8 @@ Sonido.Views.PlaylistView = Backbone.View.extend({
     "click .removeSong" : "removeSong",
     "click .unlikeSong" : "unlikeSong",
     "click .likeSong" : "likeSong",
-    "click .addPlaylist" : "addPlaylist"
+    "click .addPlaylist" : "addPlaylist",
+    "click .destroyPlaylist" : "destroyPlaylist"
   },
   render: function() {
     var showContents = this.template({playlists: this.collection})
@@ -83,6 +84,11 @@ Sonido.Views.PlaylistView = Backbone.View.extend({
 
         }
       });
+  },
+  destroyPlaylist: function(event){
+    var playlistId = $(event.currentTarget).data("playlist-id")
+    var playlist = this.collection.getOrFetch(playlistId);
+    playlist.destroy();
   },
   addPlaylist: function(){
     var currentPlaylists = this.collection;

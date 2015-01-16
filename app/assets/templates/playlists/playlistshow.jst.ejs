@@ -9,6 +9,9 @@
     <a href="#/playlists/<%= playlist.escape('id') %>">
       <%= playlist.escape('title') %>
     </a>
+    <button class="destroyPlaylist" data-playlist-id="<%= playlist.id %>">
+      X
+    </button>
   <ul class="playlist" id="playlist">
     <li>
       Status: <%= playlist.escape('status') %>
@@ -19,7 +22,7 @@
         <% playlist.songs().each(function(song){ %>
 
         <li>
-          <a href="#song/<%= song.escape('id') %>">
+          <a href="#songs/<%= song.escape('id') %>">
            <%= song.escape('title') %>
           </a>
           <button class="removeSong button" data-playlist-id="<%= playlist.id %>" data-song-id="<%= song.id %>">
