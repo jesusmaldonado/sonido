@@ -149,8 +149,8 @@ button:hover {
 
 .bar {
   position: absolute;
-  display: block;
-  bottom:0;
-  box-shadow:0px -5px 0 #000;
-  background:#fff; -webkit-transition:0.1s ease all;
+  bottom: 0;
+  box-shadow: 0px -2px 0 #aaa;
+  background: #fff;
+  -webkit-transition: 0.01s ease all;
 }
