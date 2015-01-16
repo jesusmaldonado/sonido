@@ -1,4 +1,4 @@
-// rendering code taken from
+// rendering code inspired from
 // http://www.patrick-wied.at/blog/how-to-create-audio-visualizations-with-javascript-html
 // amazing stuff
 
@@ -21,7 +21,7 @@ var config = {
 						var nunode = document.createElement('div');
 						nunode.classList.add('bar');
 						nunode.style.width = barWidth + 'px';
-						nunode.style.left = (barWidth * i) + 'px';
+						nunode.style.left = (barWidth * i *2) + 'px';
 						barsArr.push(nunode);
 						barsEl.appendChild(nunode);
 					}
@@ -103,6 +103,7 @@ Sonido.Visualization = function (config) {
 
 				var renderFrame = function() {
 					analyser.getByteFrequencyData(frequencyData);
+          console.log(audio)
 					renderer.renderFrame(frequencyData);
 					if (running) {
 						requestAnimationFrame(renderFrame);
