@@ -16,16 +16,21 @@
     <button class="playSong">
       >
     </button>
-    <div class="renderer">
-    </div>
+
     <audio src="<%= song.escape('audio_url') %>" id="Audio">
     </audio>
+
+
 
     <button class="destroySong button" data-id="<%= song.escape('id') %>">
       Destroy this song!
     </button>
-
     <button class="songLikeStatus button" data-liked="<%= song.escape('liked') %>" data-id="<%= song.id %>">
       Like this song!
     </button>
+
+    <div class="renderer">
+      <div id="bars" class="area"></div>
+    </div>
+
 </ul>
