@@ -33,6 +33,7 @@ var config = {
 
           for(var i = 0; i < barsArr.length; i++) {
 						var bar = barsArr[i];
+
 						bar.style.height = ((frequencyData[i]/max)*height + 'px');
 					}
 
@@ -103,7 +104,9 @@ Sonido.Visualization = function (config) {
 
 				var renderFrame = function() {
 					analyser.getByteFrequencyData(frequencyData);
-          console.log(audio)
+          console.log(audio.duration)
+          $(".timeLeft").html(audio.currentTime/audio.duration)
+          console.log(audio.volume)
 					renderer.renderFrame(frequencyData);
 					if (running) {
 						requestAnimationFrame(renderFrame);
