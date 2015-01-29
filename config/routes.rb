@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users do
+    collection do
+      get :demo_user
+    end
+  end
+
   resources :recordings
   resources :songs
   resources :song_likes
