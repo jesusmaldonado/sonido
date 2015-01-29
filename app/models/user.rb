@@ -24,6 +24,12 @@ class User < ActiveRecord::Base
     (user && user.is_password?(password) ) ? user : nil
   end
 
+  def self.demo_user
+    demo_user = User.new(username: Faker::Name.first_name, password: Faker::Internet.password(8), email: Faker::Internet.safe_email, account_type: "artist")
+    demo_user.save
+    demo_user
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

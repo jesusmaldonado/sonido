@@ -31,6 +31,8 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'figaro'
 
+gem 'faker'
+
 gem 'backbone-on-rails'
 
 group :development do

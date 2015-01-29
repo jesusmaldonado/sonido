@@ -35,7 +35,9 @@ class UsersController < ApplicationController
   end
 
   def demo_user
-    user = User.demo_user
+    @user = User.demo_user
+    log_in!(@user)
+    redirect_to root_path
   end
 
   def destroy
