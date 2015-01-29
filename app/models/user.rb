@@ -25,7 +25,9 @@ class User < ActiveRecord::Base
   end
 
   def self.demo_user
-    demo_user = User.new(username: Faker::Name.first_name, password: Faker::Internet.password(8), email: Faker::Internet.safe_email, account_type: "artist")
+    test_name = Faker::Name.first_name
+    name = (test_name.length < 4 ? test_name + Faker::Internet.password(4) : test_name)
+    demo_user = User.new(username: name, password: Faker::Internet.password(8), email: Faker::Internet.safe_email, account_type: "artist")
     demo_user.save
     demo_user
   end

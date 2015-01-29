@@ -1,5 +1,6 @@
 module Api
   class RecordingsController < ApiController
+    before_action :require_signed_in
 
     def create
       recording = current_user.recordings.new(recording_params);

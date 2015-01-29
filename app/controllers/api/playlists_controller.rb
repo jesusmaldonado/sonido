@@ -1,5 +1,6 @@
 module Api
   class PlaylistsController < ApiController
+    before_action :require_signed_in
 
     def create
       playlist = current_user.playlists.new(playlist_params)

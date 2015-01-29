@@ -1,5 +1,6 @@
 module Api
   class SongLikesController < ApiController
+    before_action :require_signed_in
 
     def create
       song_like = current_user.song_likes.new(song_params)
