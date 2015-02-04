@@ -1,6 +1,6 @@
 module Api
   class SongsController < ApiController
-    before_action :require_signed_in
+    # before_action :require_signed_in
 
     def index
       @songs = Song.all

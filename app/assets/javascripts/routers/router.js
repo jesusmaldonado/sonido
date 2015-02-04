@@ -72,9 +72,27 @@ Sonido.Routers.Router = Backbone.Router.extend({
     })
     this._swapView(recordingShowView)
   },
+  signIn: function(callback){
+    if (!this._requireSignedOut(callback)) { return; }
+
+    var signInView = new Sonido.Views.SignIn({
+      callback: callback
+    });
+
+    this._swapView(signInView);
+  },
   _swapView: function(view){
     this._currentView && this._currentView.remove()
     this._currentView = view;
     this.$content.html(view.render().$el)
+  },
+  _requireSignedIn: function(callback){
+    if (!Sonido.currentUser.isSignedIn()){
+      //can redirect to custom callbacks here
+      callback = callback || this._goHome.bind(this);
+      this.signIn(callback);
+      return false;
+    }
+    return true;
   }
 })

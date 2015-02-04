@@ -12,6 +12,12 @@ Sonido.Views.Sidebar = Backbone.View.extend({
     return this;
   },
   logout: function(){
-    
+    $.ajax({
+      url: "api/session",
+      type: "delete",
+      dataType: "json",
+      success: function(data){
+        Sonido.currentUser.clear()
+      }})
   }
 })

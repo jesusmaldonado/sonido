@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   def log_out!(user)
     user.reset_session_token!
     session[:token] = nil
-    redirect_to new_session_url
+    #redirect_to new_session_url
   end
 
   def require_signed_in

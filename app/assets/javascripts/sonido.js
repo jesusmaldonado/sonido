@@ -12,9 +12,11 @@ window.Sonido = {
     var users = new Sonido.Collections.Users()
     users.fetch();
 
+    Sonido.currentUser = new Sonido.Models.CurrentUser
+    Sonido.currentUser.fetch()
+
     var recordings = new Sonido.Collections.Recordings();
     recordings.fetch();
-
     var router = new Sonido.Routers.Router({
       $content: $content,
       songs: songs,
