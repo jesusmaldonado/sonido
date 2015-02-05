@@ -154,3 +154,17 @@ button:hover {
   background: #fff;
   -webkit-transition: 0.01s ease all;
 }
+
+.signup {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.preview {
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.form-errors {
+  
+}

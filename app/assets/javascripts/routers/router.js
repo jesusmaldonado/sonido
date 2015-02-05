@@ -1,18 +1,15 @@
 Sonido.Routers.Router = Backbone.Router.extend({
   initialize: function(options) {
     this.$content = options.$content;
-    this.songs = options.songs;
     this.currentUser = options.currentUser;
     this.users = options.users;
-    this.recordings = options.recordings;
     this.headerContainer = options.headerContainer;
     this.headerFunc();
-    this.sidebarContainer = options.sidebarContainer;
-    this.sidebarFunc()
   },
   routes: {
     "" : "home",
     "songs/:id" : "showSong",
+    "users/new": "userNew",
     "users/:id/playlists": "userPlaylists",
     "users/:id/likes" : "userLikes",
     "newRecording" : "newRecording",
@@ -48,10 +45,10 @@ Sonido.Routers.Router = Backbone.Router.extend({
     var uploadView = new Sonido.Views.UploadView({model: this.currentUser})
     this._swapView(uploadView);
   },
-  sidebarFunc: function(){
-    var sidebarView = new Sonido.Views.Sidebar({model: this.currentUser});
-    this.sidebarContainer.html(sidebarView.render().$el);
-    this.headerContainer.append(this.sidebarContainer)
+  userNew: function(){
+    var newUser = new Sonido.Models.User()
+    var userNewView = new Sonido.Views.UsersForm({model: newUser, collection: this.users })
+    this._swapView(userNewView)
   },
   newRecording: function(){
 
