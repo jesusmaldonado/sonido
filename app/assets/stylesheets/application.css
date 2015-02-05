@@ -165,6 +165,23 @@ button:hover {
   max-width: 200px;
 }
 
-.form-errors {
-  
+.errors {
+  font-weight: 300px;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.inactive {
+  display: hidden;
+}
+
+.active {
+  display: block;
+  border: 1px solid #e3e3e3;
+  background: #333;
+}
+
+.signup {
+  border: 1px solid #333;
+  padding: 10px;
 }

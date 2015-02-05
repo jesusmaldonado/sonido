@@ -5,7 +5,8 @@ Sonido.Views.UsersForm = Backbone.View.extend({
   template: JST["users/userform"],
   events: {
     "submit form": "submit",
-    "change #input-post-image" : "preview"
+    "change #input-post-image" : "preview",
+    "change .accounttype": "notifyUser"
   },
 
   render: function(){
@@ -30,7 +31,12 @@ Sonido.Views.UsersForm = Backbone.View.extend({
         delete model._avatar;
       },
       error: function(data, response){
-        c
+        var errors = response.responseJSON
+        for(var errormsg in errors) {
+          if (errors[errormsg]) {
+            thisView.$el.find("#" + String(errormsg) + "errors").html(errors[errormsg][0])
+          }
+        }
       }
     });
   },
@@ -54,6 +60,12 @@ Sonido.Views.UsersForm = Backbone.View.extend({
 
     }
 
+  },
+  notifyUser: function(event){
+    event.preventDefault()
+    if ($(event.currentTarget).val() === "listener") {
+      this.$el.find("#account_typeerrors").html("Only artists can upload songs!")
+    }
   },
   _updatePreview: function(src){
     this.$el.find("#preview-post-avatar").attr("src", src).addClass("preview");

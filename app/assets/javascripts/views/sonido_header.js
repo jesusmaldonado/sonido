@@ -15,7 +15,7 @@ Sonido.Views.Header = Backbone.View.extend({
   },
   logout: function(event){
     event.preventDefault();
-    BackboneAuthDemo.currentUser.signOut({
+    Sonido.currentUser.signOut({
       success: function(){
         console.log("logged out")
       }

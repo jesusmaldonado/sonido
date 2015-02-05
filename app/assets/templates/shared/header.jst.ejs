@@ -28,14 +28,14 @@
           <div class="profile-picture">
             <img src="<%= currentUser.escape('avatar_url') %>">
           </div>
-
+        <li>
+          <button class="logout">
+            Log Out
+          </button>
+        </li>
 
         <% if (currentUser.escape('account_type') === "artist") { %>
-          <li>
-            <button class="logout">
-              Log Out
-            </button>
-          </li>
+
           <li>
             <a href="#/newRecording">
               <button>
