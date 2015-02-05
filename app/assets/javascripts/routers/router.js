@@ -14,7 +14,8 @@ Sonido.Routers.Router = Backbone.Router.extend({
     "users/:id/likes" : "userLikes",
     "newRecording" : "newRecording",
     "recording/:id": "recordingShow",
-    "uploads" : "userUploads"
+    "uploads" : "userUploads",
+    "session/new": "signIn"
   },
   home: function(){
     var recentSongs = new Sonido.Collections.RecentSongs();
@@ -71,9 +72,10 @@ Sonido.Routers.Router = Backbone.Router.extend({
   },
   signIn: function(callback){
     if (!this._requireSignedOut(callback)) { return; }
-
+    var newUser = new Sonido.Models.User()
     var signInView = new Sonido.Views.SignIn({
-      callback: callback
+      callback: callback,
+      user: newUser
     });
 
     this._swapView(signInView);
@@ -91,5 +93,17 @@ Sonido.Routers.Router = Backbone.Router.extend({
       return false;
     }
     return true;
-  }
+  },
+    _requireSignedOut: function(callback){
+    if (Sonido.currentUser.isSignedIn()) {
+      callback = callback || this._goHome.bind(this);
+      callback();
+      return false;
+    }
+
+    return true;
+  },
+  _goHome: function(){
+    Backbone.history.navigate("", { trigger: true });
+  },
 })

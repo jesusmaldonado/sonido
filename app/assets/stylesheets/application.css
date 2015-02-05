@@ -155,9 +155,11 @@ button:hover {
   -webkit-transition: 0.01s ease all;
 }
 
-.signup {
+.inputform {
   width: 50%;
   margin: 0 auto;
+  border: 1px solid #333;
+  padding: 10px;
 }
 
 .preview {
@@ -179,9 +181,4 @@ button:hover {
   display: block;
   border: 1px solid #e3e3e3;
   background: #333;
-}
-
-.signup {
-  border: 1px solid #333;
-  padding: 10px;
 }
