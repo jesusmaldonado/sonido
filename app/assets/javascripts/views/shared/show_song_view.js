@@ -52,7 +52,7 @@ var config = {
 }
 
 Sonido.Visualization = function (config) {
-  var audio,
+        var audio,
 					audioStream,
 					analyser,
 					source,
@@ -120,17 +120,19 @@ Sonido.Visualization = function (config) {
 
 Sonido.Views.ShowSongView = Backbone.View.extend({
   initialize: function(){
-    this.listenTo(this.model, 'sync', this.render)
-    this.listenTo(this.model.songLike(), 'sync destroy', this.render)
+    this.listenTo(this.model, 'sync change', this.render)
     this.visualization = null
+    Sonido.currentUser.playlists().fetch()
   },
   template: JST["songs/show"],
   events: {
-    // "click .destroySong" : "destroySong",
-    "click .unliked" : "createLike",
-    "click .liked" : "destroyLike",
+    "click .destroySong" : "destroySong",
     "click .playSong" : "pressPlay",
-    "click .pauseSong" : "pauseSong"
+    "click .pauseSong" : "pauseSong",
+    "click .likeSong" : "likeSong",
+    "click .unlikeSong" : "unlikeSong",
+    "click .addToPlaylist" : "addToPlaylist",
+    "click .close" : "close"
   },
   render: function(){
     var showContents = this.template({song: this.model})
@@ -151,22 +153,6 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
       likeButton.toggleClass("liked");
     }
   },
-  createLike: function(event){
-    var song_id = $(event.currentTarget).data("id");
-    var likeButton = this.$el.find(".songLikeStatus");
-
-    var newLike = new Sonido.Models.SongLike({song_id: song_id})
-    var _currentShowView = this;
-    var currentSong = this.model;
-
-    newLike.save({}, {
-      success: function(newLike) {
-        currentSong._songLike = newLike;
-        likeButton.toggleClass("unliked");
-        _currentShowView.render();
-      }
-    })
-  },
   pressPlay: function(event){
     if (!this.visualization){
       this.visualization = new Sonido.Visualization({renderer: config['initial']});
@@ -181,17 +167,71 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
     this.visualization.stop();
     $(event.currentTarget).html(">").removeClass("pauseSong").addClass("playSong")
   },
-  destroyLike: function() {
-    var likeButton = this.$el.find(".songLikeStatus")
-    var _currentShowView = this;
-    var currentSong = this.model;
+  likeSong: function(event) {
+      var songId = $(event.currentTarget).data("song-id");
+      var data = {song_like: {song_id: songId}};
+      var button = $(event.currentTarget)
+      var song = this.model
+        $.ajax({
+          url: "api/song_likes",
+          type: "POST",
+          dataType: "json",
+          data: data,
+          success: function(){
+            button.removeClass("likeSong")
+            button.addClass("unlikeSong")
+            song.songLike()
+          },
+          error: function(){
 
-    currentSong.songLike().destroy({
-      success: function(){
-        currentSong._songLike = null;
-        likeButton.toggleClass("liked");
-        _currentShowView.render();
-      }
-    })
+          }
+        });
+
+    },
+  unlikeSong: function(event) {
+    var songId = $(event.currentTarget).data("song-id");
+    var data = {song_id: songId};
+    var button = $(event.currentTarget)
+    var song = this.model
+      $.ajax({
+        url: "api/song_likes/removeSongLike",
+        type: "DELETE",
+        dataType: "json",
+        data: data,
+        success: function(){
+          button.removeClass("unlikeSong")
+          button.addClass("likeSong")
+          song.set({liked: "notliked"});
+        },
+        error: function(){
+
+        }
+      });
+    },
+  addToPlaylist: function(event){
+      event.preventDefault();
+      var songId = this.model.id;
+      var song = this.model
+      var container = this.$el.find(".containerAddPlaylist" + songId);
+      var formContainer = this.$el.find(".addPlaylistForm" + songId);
+
+      var playlistAddView = new Sonido.Views.PlaylistAdd({
+        song: song,
+        collection: Sonido.currentUser.playlists(),
+        container: container,
+        formContainer: formContainer})
+      this.playlistView = playlistAddView
+      playlistAddView.render();
+      var button = $(event.currentTarget)
+      button.html("X").removeClass("addToPlaylist").addClass("close")
+    },
+  close: function(event){
+    var button = $(event.currentTarget)
+    button.html("+").removeClass("close").addClass("addToPlaylist")
+    this.playlistView && this.playlistView.remove()
+  },
+  remove: function(){
+    this.playlistView && this.playlistView.remove()
+    Backbone.view.prototype.remove.call(this)
   }
 })

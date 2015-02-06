@@ -21,4 +21,8 @@ class Song < ActiveRecord::Base
     end
   end
 
+  def upload_time
+    self.created_at.to_formatted_s(:short)
+  end
+
 end

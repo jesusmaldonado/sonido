@@ -13,7 +13,7 @@ module Api
     end
 
     def destroy
-      SongLike.find(params[:id]).destroy
+      current_user.song_likes.destroy(song_params)
       render json: {}
     end
 

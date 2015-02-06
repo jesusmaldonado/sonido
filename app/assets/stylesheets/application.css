@@ -129,9 +129,6 @@ button:hover {
   border: 2px solid #333;
 }
 
-.close {
-  float: right;
-}
 
 
 .recordingImage img {
@@ -187,4 +184,34 @@ a:hover {
   display: block;
   border: 1px solid #e3e3e3;
   background: #333;
+}
+
+.song {
+  padding: 30px 10px 0px 20px;
+  font-weight: 300;
+  color: #6a6968;
+  position: relative;
+}
+
+.songartist {
+  font-size: 12px;
+}
+
+.playlistForm {
+  padding: 20px;
+}
+
+.playlistformContainer {
+  position: absolute;
+  left: 700px;
+  bottom: 30px;
+  background: #fff;
+}
+
+.closeform {
+  float: right;
+}
+
+.errors {
+  color: #CD3333;
 }

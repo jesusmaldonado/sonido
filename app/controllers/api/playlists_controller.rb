@@ -2,6 +2,10 @@ module Api
   class PlaylistsController < ApiController
     before_action :require_signed_in
 
+    def index
+      @playlists = current_user.playlists.includes(:songs)
+    end
+
     def create
       playlist = current_user.playlists.new(playlist_params)
       if playlist.save

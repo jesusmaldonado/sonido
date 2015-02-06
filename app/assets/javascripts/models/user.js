@@ -15,7 +15,12 @@ Sonido.Models.User = Backbone.Model.extend({
       this.likes().set(resp.likes, {parse: true})
       delete resp.likes
     }
+    if (resp.uploads){
+      this.uploads().set(resp.uploads, {parse: true})
+      delete resp.uploads
+    }
     return resp;
+
   },
   playlists: function(){
     if (!this._playlists) {
@@ -35,7 +40,12 @@ Sonido.Models.User = Backbone.Model.extend({
     }
     return this._likes
   },
-
+  uploads: function(){
+    if (!this._uploads){
+      this._uploads = new Sonido.Collections.Songs([], {user: this})
+    }
+    return this._uploads
+  },
   toJSON: function(){
     var json = {user: _.clone(this.attributes)};
 

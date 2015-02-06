@@ -12,7 +12,8 @@
   <button class="selectedPlaylist" data-playlist-id='<%= playlist.escape('id') %>' data-playlist-contains="<%= hasSong %>" >
     <%= playlist.escape('title') + addOrDestroy %>
   </button>
+
 <%  }) %>
-<a class="close">
-  X
-</a>
+<button class="makePlaylist">
+  Make Playlist
+</button>

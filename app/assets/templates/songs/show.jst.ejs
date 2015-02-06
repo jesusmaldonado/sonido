@@ -1,17 +1,13 @@
 <ul class="song">
 
 
+    <li class="songartist"> <%= song.user().escape("username") %> </li>
 
-    <li> Title:  <%= song.escape("title") %> </li>
+    <li class="songtitle"><%= song.escape("title") %> </li>
 
+    <li class="songuploaded"><%= song.escape("upload_time") %> </li>
 
-    <li> Created At: <%= song.escape("created_at") %> </li>
-
-
-    <li> Username:  <%= song.user().escape("username") %> </li>
-
-
-    <li> Record Title: <%= song.recording().escape("title") %> </li>
+    <li class="songrecording"><%= song.recording().escape("title") %> </li>
 
     <button class="playSong">
       >
@@ -20,19 +16,35 @@
     <audio src="<%= song.escape('audio_url') %>" id="Audio">
     </audio>
 
+    <% if (song.escape('liked') === "notliked") { %>
+      <button class="likeSong button" data-song-id="<%= song.id %>">
+        &hearts;
+      </button>
+    <% } else { %>
+      <button class="unlikeSong button" data-song-id="<%= song.id %>">
+        &hearts;
+      </button>
+    <% } %>
+      <button class="addToPlaylist button" data-song-id="<%= song.id %>">
+        +
+      </button>
+    <div class="playlistformContainer addPlaylistForm<%= song.id %>">
+    </div>
 
+    <div class="containerAddPlaylist<%= song.id %>">
+    </div>
 
-    <button class="destroySong button" data-id="<%= song.escape('id') %>">
-      Destroy this song!
-    </button>
-    <button class="songLikeStatus button" data-liked="<%= song.escape('liked') %>" data-id="<%= song.id %>">
-      Like this song!
-    </button>
     <div class="timeLeft">
 
     </div>
     <div class="renderer">
       <div id="bars" class="area"></div>
     </div>
+
+    <% if (Sonido.currentUser.isSignedIn() && Sonido.currentUser.uploads().findWhere({id: song.id})){ %>
+    <button class="destroySong button" data-id="<%= song.escape('id') %>">
+      Delete Song
+    </button>
+    <% } %>
 
 </ul>

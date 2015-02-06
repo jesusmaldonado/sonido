@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :recordings, class_name: "Recording", foreign_key: :artist_id, primary_key: :id
   has_many :playlists
+  has_many :uploads, through: :recordings, source: :songs
 
   after_initialize :ensure_session_token
 
@@ -25,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def self.demo_user
-    demo_user = User.new(username: Faker::Name.first_name + Faker::Internet.password(6), password: Faker::Internet.password(16), email: Faker::Internet.safe_email + Faker::Internet.password(19), account_type: "artist")
+    demo_user = User.new(username: Faker::Name.first_name + Faker::Hacker.adjective + Faker::Hacker.noun, password: Faker::Internet.password(16), email: Faker::Internet.safe_email + Faker::Internet.password(19), account_type: "artist")
     demo_user.save
     demo_user.playlists.create([{
       title: Faker::Commerce.color + "Playlist"+demo_user.username,
@@ -50,7 +51,7 @@ class User < ActiveRecord::Base
         lyrics: Faker::Hacker.verb
         },
         {
-        title: "thisisanother song :)",
+        title: Faker::Hacker.verb + Faker::Hacker.adjective,
         lyrics: Faker::Hacker.verb
         }])
       end
@@ -73,14 +74,17 @@ class User < ActiveRecord::Base
   end
 
   def eps
+    return [] if self.account_type != 'artist'
     self.recordings.where(recording_type: "ep").order("created_at DESC")
   end
 
   def albums
+    return [] if self.account_type != 'artist'
     self.recordings.where(recording_type: "album").order("created_at DESC")
   end
 
   def singles
+    return [] if self.account_type != 'artist'
     self.recordings.where(recording_type: "single").order("created_at DESC")
   end
 
