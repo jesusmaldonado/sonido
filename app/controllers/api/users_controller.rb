@@ -5,6 +5,11 @@ module Api
         @users = User.all
       end
 
+    def demo
+      @user = User.demo_user
+      log_in!(@user)
+      render json: @user
+    end
 
       def create
         user = User.new(user_params)

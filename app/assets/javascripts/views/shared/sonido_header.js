@@ -1,7 +1,7 @@
 Sonido.Views.Header = Backbone.View.extend({
   template: JST["shared/header"],
   initialize: function(options){
-    this.listenTo(Sonido.currentUser, "signIn signOut", this.render)
+    this.listenTo(Sonido.currentUser, "signIn signOut sync change add remove reset", this.render)
   },
   events: {
     "click .logout" : "logout"

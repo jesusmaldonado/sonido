@@ -1,8 +1,10 @@
 Sonido.Routers.Router = Backbone.Router.extend({
   initialize: function(options) {
+    this.recentSongs = options.recentSongs;
     this.$content = options.$content;
     this.currentUser = options.currentUser;
     this.users = options.users;
+    this.songs = options.songs;
     this.headerContainer = options.headerContainer;
     this.headerFunc();
   },
@@ -18,8 +20,7 @@ Sonido.Routers.Router = Backbone.Router.extend({
     "session/new": "signIn"
   },
   home: function(){
-    var recentSongs = new Sonido.Collections.RecentSongs();
-    recentSongs.fetch();
+    var recentSongs = this.recentSongs
     var homeView = new Sonido.Views.Home({collection: recentSongs});
     this._swapView(homeView);
   },

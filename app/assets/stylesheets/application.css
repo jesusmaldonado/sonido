@@ -139,6 +139,9 @@ button:hover {
   height: 75px;
 }
 
+a:hover {
+  color: #bbb;
+}
 
 .renderer {
   position: relative;
@@ -155,9 +158,12 @@ button:hover {
   -webkit-transition: 0.01s ease all;
 }
 
+.submitinput:hover {
+  border: 2px solid #6a6968;
+}
 .inputform {
   width: 50%;
-  margin: 0 auto;
+  margin: 0px auto;
   border: 1px solid #333;
   padding: 10px;
 }

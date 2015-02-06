@@ -5,11 +5,11 @@ Sonido.Views.SignIn = Backbone.View.extend({
     this.user = options.user
   },
   events: {
-  "submit form": "submit"
+  "submit form": "submit",
+  "click .demouser": "demo"
   },
   template: JST["shared/sign_in"],
   render: function(){
-    console.log("hi")
     this.$el.html(this.template({user: this.user}));
     return this;
   },
@@ -27,6 +27,24 @@ Sonido.Views.SignIn = Backbone.View.extend({
       error: function(){
         alert("Wrong username/password combination. Please try again.");
       }
+    })
+  },
+  demo: function(event){
+    event.preventDefault()
+    var form_attrs = { user: {
+							username: "demoUser",
+              email: "demo@demo.com",
+							password: "demodemo"
+						}}
+    $.ajax({
+      url: "api/users/demo",
+			method: "get",
+			data: form_attrs,
+			success: function (resp) {
+				Sonido.currentUser.set(resp);
+        Sonido.currentUser.trigger("sync")
+				Backbone.history.navigate("", {trigger: true})
+			}
     })
   }
 })

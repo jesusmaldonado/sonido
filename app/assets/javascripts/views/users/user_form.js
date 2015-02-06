@@ -6,7 +6,8 @@ Sonido.Views.UsersForm = Backbone.View.extend({
   events: {
     "submit form": "submit",
     "change #input-post-image" : "preview",
-    "change .accounttype": "notifyUser"
+    "change .accounttype": "notifyUser",
+    "click .demouser": "demo"
   },
 
   render: function(){
@@ -66,6 +67,24 @@ Sonido.Views.UsersForm = Backbone.View.extend({
     if ($(event.currentTarget).val() === "listener") {
       this.$el.find("#account_typeerrors").html("Only artists can upload songs!")
     }
+  },
+  demo: function(event){
+      event.preventDefault()
+      var form_attrs = { user: {
+  							username: "demoUser",
+                email: "demo@demo.com",
+  							password: "demodemo"
+  						}}
+      $.ajax({
+        url: "api/users/demo",
+  			method: "get",
+  			data: form_attrs,
+  			success: function (resp) {
+  				Sonido.currentUser.set(resp);
+          Sonido.currentUser.trigger("sync")
+  				Backbone.history.navigate("", {trigger: true})
+  			}
+      })
   },
   _updatePreview: function(src){
     this.$el.find("#preview-post-avatar").attr("src", src).addClass("preview");
