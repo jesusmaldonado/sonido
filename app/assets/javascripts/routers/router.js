@@ -5,6 +5,7 @@ Sonido.Routers.Router = Backbone.Router.extend({
     this.currentUser = options.currentUser;
     this.users = options.users;
     this.songs = options.songs;
+    this.recordings = options.recordings;
     this.headerContainer = options.headerContainer;
     this.headerFunc();
   },

@@ -13,7 +13,7 @@
       >
     </button>
 
-    <audio src="<%= song.escape('audio_url') %>" id="Audio">
+    <audio src="<%= song.escape('audio_url') %>" id="Audio<%= song.escape('id') %>">
     </audio>
 
     <% if (song.escape('liked') === "notliked") { %>
@@ -34,11 +34,11 @@
     <div class="containerAddPlaylist<%= song.id %>">
     </div>
 
-    <div class="timeLeft">
+    <div class="timeLeft<%= song.id %>">
 
     </div>
     <div class="renderer">
-      <div id="bars" class="area"></div>
+      <div id="bars<%= song.id %>" class="area"></div>
     </div>
 
     <% if (Sonido.currentUser.isSignedIn() && Sonido.currentUser.uploads().findWhere({id: song.id})){ %>

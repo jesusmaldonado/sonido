@@ -15,6 +15,9 @@ window.Sonido = {
     recentSongs.fetch();
     var songs = new Sonido.Collections.Songs()
     songs.fetch()
+
+    var recordings = new Sonido.Collections.Recordings()
+    recordings.fetch()
     var router = new Sonido.Routers.Router({
       $content: $content,
       users: users,
@@ -22,7 +25,8 @@ window.Sonido = {
       recentSongs: recentSongs,
       currentUser: Sonido.currentUser,
       headerContainer: $(".header-container"),
-      sidebarContainer: $(".sidebar")
+      sidebarContainer: $(".sidebar"),
+      recordings: recordings
     });
     Backbone.history.start()
   }

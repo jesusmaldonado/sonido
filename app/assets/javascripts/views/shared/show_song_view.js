@@ -13,10 +13,11 @@ var config = {
 				var init = function(config) {
 					var count = config.count;
 					var width = config.width;
+          var id = String(config.id);
 					var barWidth = (width/count) >> 0;
 					height = config.height;
 
-					barsEl = document.getElementById('bars');
+					barsEl = document.getElementById('bars' + id);
 					for(var i = 0; i < count; i++ ){
 						var nunode = document.createElement('div');
 						nunode.classList.add('bar');
@@ -61,11 +62,13 @@ Sonido.Visualization = function (config) {
 					frequencyData,
 					running = false,
 					renderer = config.renderer,
+          id = String(config.id),
 					width = config.width || 360,
 					height = config.height || 100;
 
 				var init = function() {
-					audio = $("#Audio")[0]
+					audio = $("#Audio" + id)[0]
+          console.log(audio)
 					audioCtx = new AudioContext();
 					analyser = audioCtx.createAnalyser();
 					source =  audioCtx.createMediaElementSource(audio);
@@ -74,6 +77,7 @@ Sonido.Visualization = function (config) {
 					analyser.fftSize = 64;
 					frequencyData = new Uint8Array(analyser.frequencyBinCount);
 					renderer.init({
+            id: id,
 						count: analyser.frequencyBinCount,
 						width: width,
 						height: height
@@ -104,9 +108,7 @@ Sonido.Visualization = function (config) {
 
 				var renderFrame = function() {
 					analyser.getByteFrequencyData(frequencyData);
-          console.log(audio.duration)
-          $(".timeLeft").html(audio.currentTime/audio.duration)
-          console.log(audio.volume)
+          $(".timeLeft" + id).html(audio.currentTime/audio.duration)
 					renderer.renderFrame(frequencyData);
 					if (running) {
 						requestAnimationFrame(renderFrame);
@@ -140,7 +142,7 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
   },
   pressPlay: function(event){
     if (!this.visualization){
-      this.visualization = new Sonido.Visualization({renderer: config['initial']});
+      this.visualization = new Sonido.Visualization({renderer: config['initial'], id: this.model.id});
       this.visualization.setRenderer(config['initial']);
     }
 
