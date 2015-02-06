@@ -5,14 +5,20 @@ module Api
         @users = User.all
       end
 
+    def demo
+      @user = User.demo_user
+      log_in!(@user)
+      render json: @user
+    end
 
       def create
         user = User.new(user_params)
 
         if user.save
+          log_in!(user)
           render json: user
         else
-          render json: user.errors.full_messages, status: :unprocessable_entity
+          render json: user.errors.messages, status: :unprocessable_entity
         end
       end
 

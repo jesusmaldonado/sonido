@@ -1,18 +1,13 @@
-<form>
+<form class="inputform">
+  <h1> Sign In </h1>
   <label for="username">Username</label>
-  <input type="text" name="user[username]" id="username" value="<%= user.username %>">
+  <input class="or" type="text" name="user[username]" id="username" value="<%= user.username %>">
+  <br>
+  <label for="email"> Email </label>
+  <input class="or" type="text" name="user[email]" value="<%= user.email %>">
   <br>
   <label for="password">Password</label>
   <input type="password" name="user[password]" id="password">
-  <br>
-  <label for="email"> Email </label>
-  <input type="text" name="user[email]" value="<%= user.email %>">
-    <br>
-    <label for="accounttype">Account Type (Can Only Choose Once!)</label>
-    <select id="accounttype" name="user[account_type]">
-      <option value="listener">Listener</option>
-      <option value="artist">Artist</option>
-    </select>
-    <br>
-    <input type="submit" value="<%= user_form_value %>">
+  <button class="demouser">Demo User</button>
+  <input class="submitinput" type="submit" value="Sign In">
 </form>

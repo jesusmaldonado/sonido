@@ -21,8 +21,10 @@ module Api
       end
     end
 
+
+
     def destroy
-      log_out!
+      log_out!(current_user)
       render json: {}
     end
 

@@ -1,1 +1,1 @@
-json.array! @songs, partial: "api/songs/song", as: :song
+json.array! @songs, partial: "api/songs/recentsong", as: :song

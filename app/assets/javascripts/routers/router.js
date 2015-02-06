@@ -1,27 +1,26 @@
 Sonido.Routers.Router = Backbone.Router.extend({
   initialize: function(options) {
+    this.recentSongs = options.recentSongs;
     this.$content = options.$content;
-    this.songs = options.songs;
     this.currentUser = options.currentUser;
     this.users = options.users;
-    this.recordings = options.recordings;
+    this.songs = options.songs;
     this.headerContainer = options.headerContainer;
     this.headerFunc();
-    this.sidebarContainer = options.sidebarContainer;
-    this.sidebarFunc()
   },
   routes: {
     "" : "home",
     "songs/:id" : "showSong",
+    "users/new": "userNew",
     "users/:id/playlists": "userPlaylists",
     "users/:id/likes" : "userLikes",
     "newRecording" : "newRecording",
     "recording/:id": "recordingShow",
-    "uploads" : "userUploads"
+    "uploads" : "userUploads",
+    "session/new": "signIn"
   },
   home: function(){
-    var recentSongs = new Sonido.Collections.RecentSongs();
-    recentSongs.fetch();
+    var recentSongs = this.recentSongs
     var homeView = new Sonido.Views.Home({collection: recentSongs});
     this._swapView(homeView);
   },
@@ -48,10 +47,10 @@ Sonido.Routers.Router = Backbone.Router.extend({
     var uploadView = new Sonido.Views.UploadView({model: this.currentUser})
     this._swapView(uploadView);
   },
-  sidebarFunc: function(){
-    var sidebarView = new Sonido.Views.Sidebar({model: this.currentUser});
-    this.sidebarContainer.html(sidebarView.render().$el);
-    this.headerContainer.append(this.sidebarContainer)
+  userNew: function(){
+    var newUser = new Sonido.Models.User()
+    var userNewView = new Sonido.Views.UsersForm({model: newUser, collection: this.users })
+    this._swapView(userNewView)
   },
   newRecording: function(){
 
@@ -72,9 +71,40 @@ Sonido.Routers.Router = Backbone.Router.extend({
     })
     this._swapView(recordingShowView)
   },
+  signIn: function(callback){
+    if (!this._requireSignedOut(callback)) { return; }
+    var newUser = new Sonido.Models.User()
+    var signInView = new Sonido.Views.SignIn({
+      callback: callback,
+      user: newUser
+    });
+
+    this._swapView(signInView);
+  },
   _swapView: function(view){
     this._currentView && this._currentView.remove()
     this._currentView = view;
     this.$content.html(view.render().$el)
-  }
+  },
+  _requireSignedIn: function(callback){
+    if (!Sonido.currentUser.isSignedIn()){
+      //can redirect to custom callbacks here
+      callback = callback || this._goHome.bind(this);
+      this.signIn(callback);
+      return false;
+    }
+    return true;
+  },
+    _requireSignedOut: function(callback){
+    if (Sonido.currentUser.isSignedIn()) {
+      callback = callback || this._goHome.bind(this);
+      callback();
+      return false;
+    }
+
+    return true;
+  },
+  _goHome: function(){
+    Backbone.history.navigate("", { trigger: true });
+  },
 })

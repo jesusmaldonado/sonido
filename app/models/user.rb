@@ -25,10 +25,35 @@ class User < ActiveRecord::Base
   end
 
   def self.demo_user
-    test_name = Faker::Name.first_name
-    name = (test_name.length < 4 ? test_name + Faker::Internet.password(4) : test_name)
-    demo_user = User.new(username: name, password: Faker::Internet.password(8), email: Faker::Internet.safe_email, account_type: "artist")
+    demo_user = User.new(username: Faker::Name.first_name + Faker::Internet.password(6), password: Faker::Internet.password(16), email: Faker::Internet.safe_email + Faker::Internet.password(19), account_type: "artist")
     demo_user.save
+    demo_user.playlists.create([{
+      title: "Party Playlist"+demo_user.username,
+      status: "public"
+    }, {
+      title: demo_user.username + " 's Private Moments",
+      status: "private"
+    }])
+
+    demo_user.recordings.create([{
+      title: demo_user.username + "'s First Hot Single'",
+      recording_type: "album",
+      description: "hope you guys like this"
+    }, {
+      title: demo_user.username + "'s Sultry New Album'",
+      recording_type: "single",
+      description: "hope you guys like this one too"
+    }])
+    demo_user.recordings.each do |recording|
+      recording.songs.create([{
+        title: "myfirstsong :)",
+        lyrics: "~figure out these lyrics~"
+        },
+        {
+        title: "thisisanother song :)",
+        lyrics: "at least taylor swift didn't write these lyrics?"
+        }])
+      end
     demo_user
   end
 
