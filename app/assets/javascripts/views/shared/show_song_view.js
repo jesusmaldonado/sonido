@@ -122,7 +122,6 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
   initialize: function(){
     this.listenTo(this.model, 'sync change', this.render)
     this.visualization = null
-    Sonido.currentUser.playlists().fetch()
   },
   template: JST["songs/show"],
   events: {
@@ -137,21 +136,7 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
   render: function(){
     var showContents = this.template({song: this.model})
     this.$el.html(showContents);
-    this.renderButton();
     return this;
-  },
-  renderButton: function(){
-    var likeButton = this.$el.find(".songLikeStatus")
-
-    var songLike = this.model.songLike()
-    var likedStatus = this.model.songLike().get("id");
-    if (!likedStatus) {
-      likeButton.html("Like this song!");
-      likeButton.toggleClass("unliked");
-    } else {
-      likeButton.html("Unlike this song!");
-      likeButton.toggleClass("liked");
-    }
   },
   pressPlay: function(event){
     if (!this.visualization){
@@ -221,7 +206,7 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
         container: container,
         formContainer: formContainer})
       this.playlistView = playlistAddView
-      playlistAddView.render();
+      this.playlistView.render()
       var button = $(event.currentTarget)
       button.html("X").removeClass("addToPlaylist").addClass("close")
     },
@@ -232,6 +217,6 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
   },
   remove: function(){
     this.playlistView && this.playlistView.remove()
-    Backbone.view.prototype.remove.call(this)
+    Backbone.View.prototype.remove.call(this)
   }
 })

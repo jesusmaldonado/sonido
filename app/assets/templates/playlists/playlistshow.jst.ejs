@@ -5,46 +5,17 @@
 </div>
 
 <% playlists.each(function(playlist){ %>
-  <label>
     <a href="#/playlists/<%= playlist.escape('id') %>">
       <%= playlist.escape('title') %>
+      (<%= playlist.escape('status') %>)
+
     </a>
-    <button class="destroyPlaylist" data-playlist-id="<%= playlist.id %>">
-      X
-    </button>
-  <ul class="playlist" id="playlist">
-    <li>
-      Status: <%= playlist.escape('status') %>
-    </li>
-    <li>
-      Songs:
-      <ul>
-        <% playlist.songs().each(function(song){ %>
+      <button class="destroyPlaylist" data-playlist-id="<%= playlist.id %>">
+        X
+      </button>
 
-        <li>
-          <a href="#songs/<%= song.escape('id') %>">
-           <%= song.escape('title') %>
-          </a>
-          <button class="removeSong button" data-playlist-id="<%= playlist.id %>" data-song-id="<%= song.id %>">
-            X
-          </button>
-          <% if (song.escape('liked') === "notliked") { %>
-            <button class="likeSong button" data-song-id="<%= song.id %>" data-playlist-id="<%= playlist.id %>">
-              &hearts;
-            </button>
-          <% } else { %>
-            <button class="unlikeSong button" data-song-id="<%= song.id %>" data-playlist-id="<%= playlist.id %>">
-              &hearts;
-            </button>
-          <% } %>
+    <ul class="playlistsongs<%= playlist.escape('id') %>">
+    </ul>
 
-        </li>
-
-        <% }); %>
-      </ul>
-
-    </li>
-  </ul>
-  </label>
 
 <%  }) %>

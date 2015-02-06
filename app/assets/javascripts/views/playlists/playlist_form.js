@@ -43,6 +43,12 @@ Sonido.Views.PlaylistForm = Backbone.View.extend({
   },
   close: function(event){
     event.preventDefault()
+    if (this.callback) {
       this.callback()
+    } else {
+      $(".containerForAdd").html("<button class=addPlaylist> Add a new playlist </button>")
+      Backbone.View.prototype.remove.call(this)
+    }
+
   }
 })

@@ -5,7 +5,6 @@ Sonido.Views.PlaylistAdd = Backbone.View.extend({
     this.container = options.container;
     this.formContainer = options.formContainer;
     this.listenTo(this.collection, 'sync change add remove', this.render)
-    this.playlistForm = null;
   },
   events: {
     "click .selectedPlaylist" : "handlePlaylistSong",
@@ -27,6 +26,7 @@ Sonido.Views.PlaylistAdd = Backbone.View.extend({
       playlist_id: playlistId,
       song_id: songId
     };
+
     var playlists = this.collection
     var playlist = this.collection.get(playlistId)
 

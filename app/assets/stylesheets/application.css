@@ -215,3 +215,7 @@ a:hover {
 .errors {
   color: #CD3333;
 }
+
+.playlistForm {
+  padding-right: 200px;
+}

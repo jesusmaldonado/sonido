@@ -1,6 +1,7 @@
 Sonido.Views.Home = Backbone.View.extend({
   initialize: function(){
     this.listenTo(this.collection, 'sync change', this.render);
+    this.subViews = []
   },
   events: {
     "click .likeSong" : "likeSong",
@@ -11,62 +12,19 @@ Sonido.Views.Home = Backbone.View.extend({
   className: "popularFeed",
   render: function(){
     var homeContents = this.template({ songs: this.collection });
+    var currentView = this;
     this.$el.html(homeContents);
+    this.collection.each(function(song){
+        var songView = new Sonido.Views.ShowSongView({model: song})
+        currentView.subViews.push(songView)
+        currentView.$el.find(".popular-song-section").append("<li></li>").html((songView.render().$el))
+    })
     return this;
   },
-  likeSong: function(event) {
-    var songId = $(event.currentTarget).data("song-id");
-    var data = {song_like: {song_id: songId}};
-
-    var recentSongs = this.collection
-    var song = this.collection.get(songId);
-      $.ajax({
-        url: "api/song_likes",
-        type: "POST",
-        dataType: "json",
-        data: data,
-        success: function(){
-          song.set({liked: "liked"});
-          recentSongs.trigger("change");
-
-        },
-        error: function(){
-
-        }
-      });
-  },
-  unlikeSong: function(event) {
-    var songId = $(event.currentTarget).data("song-id");
-    var data = {song_id: songId};
-
-    var recentSongs = this.collection;
-    var song = this.collection.get(songId);
-
-    $.ajax({
-      url: "api/song_likes/removeSongLike",
-      type: "DELETE",
-      dataType: "json",
-      data: data,
-      success: function(){
-        song.set({liked: "notliked"});
-        recentSongs.trigger("change");
-      },
-      error: function(){
-
-      }
-    });
-  },
-  addToPlaylist: function(event){
-    event.preventDefault();
-    var songId = $(event.currentTarget).data("song-id");
-    var song = this.collection.get(songId);
-    var $el = this.$el.find(".containerAddPlaylist" + songId);
-
-    var playlistAddView = new Sonido.Views.PlaylistAdd({
-      song: song,
-      collection: Sonido.currentUser.playlists(),
-      recentSongs: this.collection,
-      $el: $el })
-    playlistAddView.render();
+  remove: function(){
+    this.subViews.forEach(function(subView) {
+      subView.remove()
+    })
+    Backbone.View.prototype.remove.call(this)
   }
 })
