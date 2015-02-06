@@ -21,13 +21,17 @@ Sonido.Views.SignIn = Backbone.View.extend({
       username: formData.username,
       email: formData.email,
       password: formData.password,
-      success: function(){
-        Backbone.history.navigate("", {trigger: true})
-      },
-      error: function(){
-        alert("Wrong username/password combination. Please try again.");
+      error: function(data,string){
+        console.log(string)
       }
     })
+  },
+  signInCallback: function(event){
+    if (this.callback) {
+      this.callback();
+    } else {
+      Backbone.history.navigate("", { trigger: true });
+    }
   },
   demo: function(event){
     event.preventDefault()

@@ -1,6 +1,6 @@
 module Api
   class SessionsController < ApplicationController
-    before_action :require_signed_in, except: [:destroy]
+    # before_action :require_signed_in, except: [:destroy]
 
     def show
       if current_user
@@ -24,7 +24,7 @@ module Api
 
 
     def destroy
-      log_out!(current_user)
+      log_out!
       render json: {}
     end
 

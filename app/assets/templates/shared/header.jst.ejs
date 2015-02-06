@@ -4,18 +4,18 @@
         <a href="" > Home </a>
       </li>
       <li class="sidebarlink">
-        <a href="#/users/<%= currentUser.get("id") %>/playlists" > Playlists </a>
+        <a href="#myplaylists"> Playlists </a>
       </li>
       <% if (currentUser.escape('account_type') === "artist") {%>
       <li class="sidebarlink">
-        <a href="#/users/<%= currentUser.get("id") %>/tracks"> Tracks </a>
+        <a href="#mytracks"> Tracks </a>
       </li>
       <% }  %>
       <li class="sidebarlink">
-        <a href="#/users/<%= currentUser.get("id") %>/likes"> Likes </a>
+        <a href="#mylikes"> Likes </a>
       </li>
       <li>
-        <a href="#/users/<%= currentUser.get("id") %>/settings"> Settings </a>
+        <a href="#mysettings"> Settings </a>
       </li>
     </ul>
   </div>

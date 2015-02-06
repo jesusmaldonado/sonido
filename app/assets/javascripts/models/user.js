@@ -76,8 +76,8 @@ Sonido.Models.CurrentUser = Sonido.Models.User.extend({
         model.set(data);
         options.success && options.success();
       },
-      error: function(){
-        options.error && options.error();
+      error: function(data, string){
+        options.error && options.error(string);
       }
     });
   },
