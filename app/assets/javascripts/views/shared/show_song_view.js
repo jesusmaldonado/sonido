@@ -34,7 +34,7 @@ var config = {
 
           for(var i = 0; i < barsArr.length; i++) {
 						var bar = barsArr[i];
-
+            console.log(bar);
 						bar.style.height = ((frequencyData[i]/max)*height + 'px');
 					}
 
@@ -67,8 +67,7 @@ Sonido.Visualization = function (config) {
 					height = config.height || 100;
 
 				var init = function() {
-					audio = $("#Audio" + id)[0]
-          console.log(audio)
+					audio = $("#Audio" + id)[0];
 					audioCtx = new AudioContext();
 					analyser = audioCtx.createAnalyser();
 					source =  audioCtx.createMediaElementSource(audio);
@@ -122,8 +121,8 @@ Sonido.Visualization = function (config) {
 
 Sonido.Views.ShowSongView = Backbone.View.extend({
   initialize: function(){
-    this.listenTo(this.model, 'sync change', this.render)
-    this.visualization = null
+    this.listenTo(this.model, 'sync change', this.render);
+    this.visualization = null;
   },
   template: JST["songs/show"],
   events: {
@@ -136,7 +135,7 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
     "click .close" : "close"
   },
   render: function(){
-    var showContents = this.template({song: this.model})
+    var showContents = this.template({song: this.model});
     this.$el.html(showContents);
     return this;
   },
@@ -147,12 +146,12 @@ Sonido.Views.ShowSongView = Backbone.View.extend({
     }
 
     this.visualization.start();
-    $(event.currentTarget).html("=").removeClass("playSong").addClass("pauseSong")
+    $(event.currentTarget).html("=").removeClass("playSong").addClass("pauseSong");
 
   },
   pauseSong: function(event){
     this.visualization.stop();
-    $(event.currentTarget).html(">").removeClass("pauseSong").addClass("playSong")
+    $(event.currentTarget).html(">").removeClass("pauseSong").addClass("playSong");
   },
   likeSong: function(event) {
       var songId = $(event.currentTarget).data("song-id");

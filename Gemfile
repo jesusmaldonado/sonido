@@ -33,7 +33,9 @@ gem 'figaro'
 
 gem 'faker'
 
+## TODO: Cut this gem out
 gem 'backbone-on-rails'
+gem 'bower-rails', "~> 0.10.0"
 
 group :development do
   gem 'pry-rails'
