@@ -27,6 +27,7 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = false
   config.assets.digest = true
+  
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.

@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
   def self.demo_user
     demo_user = User.new(username: Faker::Name.first_name + Faker::Hacker.adjective + Faker::Hacker.noun, password: Faker::Internet.password(16), email: Faker::Internet.safe_email + Faker::Internet.password(19), account_type: "artist")
-    demo_user.save
+    demo_user.save!
     demo_user.playlists.create([{
       title: Faker::Commerce.color + "Playlist"+demo_user.username,
       status: "public"

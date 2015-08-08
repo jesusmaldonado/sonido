@@ -25,8 +25,8 @@ module Sonido
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
       }
     }
-    config.assets.paths << "app/assets/audios/*"
-    config.assets.paths << "vendor/assets/bower_components" 
+    config.assets.paths << "#{Rails.root}/app/assets/audios"
+    config.assets.paths << "#{Rails.root}/vendor/assets/bower_components" 
     config.assets.precompile << %w(*.mp3)
 
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
