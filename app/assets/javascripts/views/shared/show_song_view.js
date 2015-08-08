@@ -34,7 +34,6 @@ var config = {
 
           for(var i = 0; i < barsArr.length; i++) {
 						var bar = barsArr[i];
-            console.log(bar);
 						bar.style.height = ((frequencyData[i]/max)*height + 'px');
 					}
 

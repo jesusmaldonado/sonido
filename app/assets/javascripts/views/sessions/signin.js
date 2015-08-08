@@ -22,7 +22,6 @@ Sonido.Views.SignIn = Backbone.View.extend({
       email: formData.email,
       password: formData.password,
       error: function(data,string){
-        console.log(string)
       }
     })
   },

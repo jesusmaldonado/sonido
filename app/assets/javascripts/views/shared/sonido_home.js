@@ -15,10 +15,8 @@ Sonido.Views.Home = Backbone.View.extend({
     var currentView = this;
     this.$el.html(homeContents);
     this.collection.each(function(song){
-      console.log(song)
         var songView = new Sonido.Views.ShowSongView({model: song})
         currentView.subViews.push(songView)
-        console.log(currentView.$el.find(".popular-song-section"))
         var element = $("<li></li>").html((songView.render().$el))
         currentView.$el.find(".popular-song-section").append(element)
     })

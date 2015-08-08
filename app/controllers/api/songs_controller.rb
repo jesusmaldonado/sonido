@@ -3,7 +3,9 @@ module Api
     # before_action :require_signed_in
 
     def index
+      p "starting"
       @songs = Song.all
+      p "ending"
     end
 
     def create

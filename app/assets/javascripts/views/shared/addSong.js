@@ -56,7 +56,5 @@ Sonido.Views.NewSong = Backbone.View.extend({
     Backbone.View.prototype.remove.call(this);
   },
   _updateProgress: function(event){
-    console.log(event)
-
   }
 })
