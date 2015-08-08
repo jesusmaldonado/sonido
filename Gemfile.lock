@@ -91,6 +91,7 @@ GEM
     mimemagic (0.3.0)
     minitest (5.8.0)
     multi_json (1.11.2)
+    newrelic_rpm (3.12.1.298)
     paperclip (4.3.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -175,6 +176,7 @@ DEPENDENCIES
   figaro
   jbuilder (~> 2.0)
   jquery-rails
+  newrelic_rpm
   paperclip
   pg
   pry-rails
