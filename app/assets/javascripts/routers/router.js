@@ -4,7 +4,7 @@ Sonido.Routers.Router = Backbone.Router.extend({
     this.$content = options.$content;
     this.currentUser = options.currentUser;
     this.users = options.users;
-    this.songs = options.songs;
+    this.songs = options.recentSongs;
     this.recordings = options.recordings;
     this.headerContainer = options.headerContainer;
     this.headerFunc();
@@ -21,7 +21,7 @@ Sonido.Routers.Router = Backbone.Router.extend({
     "session/new": "signIn"
   },
   home: function(){
-    var recentSongs = this.recentSongs
+    var recentSongs = this.recentSongs;
     var homeView = new Sonido.Views.Home({collection: recentSongs});
     this._swapView(homeView);
   },
@@ -34,12 +34,12 @@ Sonido.Routers.Router = Backbone.Router.extend({
     var callback = this.userPlaylists.bind(this)
     if (!this._requireSignedIn(callback)) { return; }
     var playlists = Sonido.currentUser.playlists()
-    var playlistsView = new Sonido.Views.PlaylistView({ collection: playlists })
+    var playlistsView = new Sonido.Views.PlaylistView({ collection: playlists });
     this._swapView(playlistsView);
   },
   userLikes : function(id){
-    var likes = this.users.getOrFetch(id).likes()
-    var likesView = new Sonido.Views.LikesView({collection: likes})
+    var likes = this.users.getOrFetch(id).likes();
+    var likesView = new Sonido.Views.LikesView({collection: likes});
     this._swapView(likesView);
   },
   headerFunc: function() {
@@ -85,9 +85,9 @@ Sonido.Routers.Router = Backbone.Router.extend({
     this._swapView(signInView);
   },
   _swapView: function(view){
-    this._currentView && this._currentView.remove()
+    this._currentView && this._currentView.remove();
     this._currentView = view;
-    this.$content.html(view.render().$el)
+    this.$content.html(view.render().$el);
   },
   _requireSignedIn: function(callback){
     if (!Sonido.currentUser.isSignedIn()){
