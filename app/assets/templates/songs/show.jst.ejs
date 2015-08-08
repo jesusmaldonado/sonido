@@ -13,7 +13,7 @@
       >
     </button>
 
-    <audio src="<%= song.escape('audio_url') %>" id="Audio<%= song.escape('id') %>">
+    <audio src="<%= song.escape('audio_url') %>" id="Audio<%= song.escape('id') %>" preload="auto">
     </audio>
 
     <% if (song.escape('liked') === "notliked") { %>
